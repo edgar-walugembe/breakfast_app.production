@@ -34,6 +34,7 @@ import { CreateUser, DeleteUser, EditUser } from "../modalComponents";
 import axios from "axios";
 import { getUserUrl } from "../../constants";
 import { FaUserEdit } from "react-icons/fa";
+import { TbUserEdit } from "react-icons/tb";
 
 function createData(
   id,
@@ -368,13 +369,14 @@ export default function EnhancedTable({ onSelectUser }) {
 
   const [selectedUserData, setSelectedUserData] = useState(null);
   const handleRowClick = (userData) => {
-    setSelectedUserData((prevSelected) => {
-      if (selected.indexOf(userData.userId) === -1) {
-        return [...prevSelected, userData];
-      } else {
-        return prevSelected.filter((user) => user.userId !== userData.userId);
-      }
-    });
+    setSelectedUserData(userData);
+    // setSelectedUserData((prevSelected) => {
+    //   if (selected.indexOf(userData.userId) === -1) {
+    //     return [...prevSelected, userData];
+    //   } else {
+    //     return prevSelected.filter((user) => user.userId !== userData.userId);
+    //   }
+    // });
   };
 
   const handleClickCreate = () => {
@@ -463,14 +465,14 @@ export default function EnhancedTable({ onSelectUser }) {
                           {formatTimestamp(row.updatedAt)}
                         </TableCell>
                         <TableCell align="left">
-                          <Button
+                          <IconButton
                             // style={{ background: "yellow", color: "black" }}
                             // variant="outlined"
                             size="xs"
                             onClick={handleClickEdit}
                           >
-                            <FaUserEdit size={20} color="black" />
-                          </Button>
+                            <TbUserEdit size={20} color="black" />
+                          </IconButton>
                         </TableCell>
                       </TableRow>
                     );

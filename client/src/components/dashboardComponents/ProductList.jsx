@@ -463,14 +463,14 @@ export default function EnhancedTable() {
                           {formatTimestamp(row.updatedAt)}
                         </TableCell>
                         <TableCell align="center">
-                          <Button
+                          <IconButton
                             // style={{ background: "yellow", color: "black" }}
                             // variant="outlined"
                             size="xs"
                             onClick={handleClickEdit}
                           >
                             <FiEdit3 size={20} color="black" />
-                          </Button>
+                          </IconButton>
                         </TableCell>
                       </TableRow>
                     );
