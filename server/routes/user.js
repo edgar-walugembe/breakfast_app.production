@@ -29,9 +29,6 @@ router.patch("/editUser", editUser);
 router.get("/all", fetchAllUsers);
 
 //FIXME: THIS IS COMMENTED BUT USEFUL
-// /* loginUser Route. */
-// router.get("/login", authenticateToken, loginUser);
-
 // /* setPassword Route. */
 // router.post("/setPassword", hashPassword, authenticateToken, setUserPassword);
 

@@ -40,13 +40,13 @@ const Navbar = ({ fetchProductData, fetchData }) => {
 
   const fetchUserData = async (token) => {
     try {
-      const res = await axios.get(baseUrl, {
+      const res = await axios.get(`${baseUrl}?userId=${1}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      return res.data;
+      setUserData(res.data);
     } catch (error) {
       throw new Error("Error fetching user data: " + error.message);
     }
@@ -61,8 +61,8 @@ const Navbar = ({ fetchProductData, fetchData }) => {
       <div className="grid">
         <div className="flex justify-between col-12">
           <div className="flex flex-col text-black">
-            <h5 className="">Hello, {userData && userData.name}</h5>
-            <span>(Admin)</span>
+            <h5 className="">Hello, {userData && userData.user.name}</h5>
+            <span>{userData && userData.user.userRole}</span>
             <p className="font-semibold text-[12px]">{formattedDate}</p>
           </div>
 

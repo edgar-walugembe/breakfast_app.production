@@ -77,33 +77,34 @@ async function editUser(req, res, next) {
 }
 
 // login user
-async function loginUser(req, res, next) {
-  const { name, password } = req.body;
+// async function loginUser(req, res, next) {
+//   const { name, password } = req.body;
 
-  try {
-    const user = await User.findOne({ name });
+//   try {
+//     const user = await User.findOne({ name });
 
-    if (!user) {
-      return res.status(404).json({ message: "Incorrect name or password" });
-    }
+//     if (!user) {
+//       return res.status(404).json({ message: "Incorrect name or password" });
+//     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+//     const passwordMatch = await bcrypt.compare(password, user.password);
 
-    if (!passwordMatch) {
-      return res.status(401).json({ message: "Incorrect name or password" });
-    }
+//     if (!passwordMatch) {
+//       return res.status(401).json({ message: "Incorrect name or password" });
+//     }
 
-    return res.status(200).json({ user });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Internal server error" });
-  }
-}
+//     return res.status(200).json({ user });
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ error: "Internal server error" });
+//   }
+// }
 
 module.exports = {
   createUser,
   deleteUser,
   editUser,
   fetchAllUsers,
-  loginUser,
 };
+
+// loginUser,

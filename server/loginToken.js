@@ -2,9 +2,29 @@ const { Token } = require("./database/models");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-async function loginToken(req, res, next) {
+const retrieveToken = async (req, res, next) => {
   try {
-    const userId = req.user.userId;
+    const userId = parseInt(req.query.userId);
+
+    const tokenData = await Token.findOne({ where: { userId } });
+
+    if (!tokenData) {
+      return res.status(404).json({ error: "Token not found for the user" });
+    }
+
+    const token = tokenData.token;
+    req.token = token;
+    next();
+  } catch (error) {
+    console.error("Error retrieving token:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+async function authenticateUser(req, res, next) {
+  try {
+    const userId = parseInt(req.query.userId);
+
     const tokenData = await Token.findOne({ where: { userId } });
 
     if (!tokenData) {
@@ -17,6 +37,7 @@ async function loginToken(req, res, next) {
     const userRole = decoded.userRole;
 
     let jwtSecret;
+
     switch (userRole) {
       case "User":
         jwtSecret = process.env.JWT_SECRET_USER;
@@ -42,5 +63,6 @@ async function loginToken(req, res, next) {
 }
 
 module.exports = {
-  loginToken,
+  authenticateUser,
+  retrieveToken,
 };

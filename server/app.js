@@ -13,7 +13,7 @@ const orderRouter = require("./routes/order");
 const passwordRouter = require("./routes/password");
 
 const { loginUser } = require("./authUser");
-const { loginToken } = require("./loginToken");
+const { authenticateUser, retrieveToken } = require("./loginToken");
 
 const app = express();
 
@@ -29,9 +29,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-//login page
+// login route
 app.post("/", loginUser);
-app.get("/", loginToken, (req, res) => {
+
+// token route
+
+app.get("/", retrieveToken, authenticateUser, (req, res) => {
   const user = req.user;
   res.json({ message: "Authenticated user", user: user });
 });
