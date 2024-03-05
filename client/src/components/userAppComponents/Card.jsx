@@ -2,6 +2,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { FiPlusCircle } from "react-icons/fi";
+import { TbShoppingCartPlus } from "react-icons/tb";
 
 //context imports
 import { UserOrderContext } from "../../contexts/UserOrderContext";
@@ -37,7 +38,7 @@ const Card = ({ title, price, img }) => {
           style={{ width: "2.5rem", height: "2.5rem" }}
           onClick={increaseCount}
         >
-          <FiPlusCircle className="text-xl text-white font-semibold" />
+          <TbShoppingCartPlus size={24} className=" text-white font-semibold" />
         </div>
       </div>
     </div>

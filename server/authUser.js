@@ -1,7 +1,20 @@
-const { User } = require("./database/models");
+const { User, Token } = require("./database/models");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+
+const insertToken = async (userId, token, expiresAt) => {
+  try {
+    await Token.create({
+      userId,
+      token,
+      expiresAt,
+    });
+    console.log("Token inserted successfully");
+  } catch (error) {
+    console.error("Error inserting token:", error);
+  }
+};
 
 async function authenticateToken(req, res, next) {
   const { name, password } = req.body;
@@ -37,20 +50,6 @@ async function authenticateToken(req, res, next) {
       return res.status(500).json({ error: "Invalid user role" });
     }
 
-    // switch (userRole) {
-    //   case "User":
-    //     jwtSecret = JWT_SECRET_USER;
-    //     break;
-    //   case "Admin":
-    //     jwtSecret = JWT_SECRET_ADMIN;
-    //     break;
-    //   case "SuperAdmin":
-    //     jwtSecret = JWT_SECRET_SUPER;
-    //     break;
-    //   default:
-    //     return res.status(500).json({ error: "Invalid user role" });
-    // }
-
     switch (userRole) {
       case "User":
         jwtSecret = JWT_SECRET_USER;
@@ -74,6 +73,8 @@ async function authenticateToken(req, res, next) {
       jwtSecret
     );
 
+    await insertToken(user.userId, jwtToken, null);
+
     res.cookie("token", jwtToken, { httpOnly: true });
 
     res.json({
@@ -89,3 +90,17 @@ async function authenticateToken(req, res, next) {
 module.exports = {
   authenticateToken,
 };
+
+// switch (userRole) {
+//   case "User":
+//     jwtSecret = JWT_SECRET_USER;
+//     break;
+//   case "Admin":
+//     jwtSecret = JWT_SECRET_ADMIN;
+//     break;
+//   case "SuperAdmin":
+//     jwtSecret = JWT_SECRET_SUPER;
+//     break;
+//   default:
+//     return res.status(500).json({ error: "Invalid user role" });
+// }

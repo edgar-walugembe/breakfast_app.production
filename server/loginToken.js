@@ -1,14 +1,18 @@
+const { Token } = require("./database/models");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-function loginToken(req, res, next) {
-  const token = req.cookies.token;
-
-  if (!token) {
-    return res.status(401).json({ message: "Token not provided" });
-  }
-
+async function loginToken(req, res, next) {
   try {
+    const userId = req.user.userId;
+    const tokenData = await Token.findOne({ where: { userId } });
+
+    if (!tokenData) {
+      return res.status(401).json({ error: "Token not found in the database" });
+    }
+
+    const token = tokenData.token;
+
     const decoded = jwt.decode(token);
     const userRole = decoded.userRole;
 
@@ -33,7 +37,7 @@ function loginToken(req, res, next) {
 
     next();
   } catch (error) {
-    return res.status(401).json({ error: "Invalid token" });
+    return res.status(401).json({ error: "Invalid token or database error" });
   }
 }
 

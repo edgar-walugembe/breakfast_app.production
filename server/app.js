@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 //login page
-app.post("/", authenticateToken, loginUser);
+app.post("/", authenticateToken);
 app.get("/", loginToken, (req, res) => {
   const user = req.user;
   res.json({ message: "Authenticated user", user: user });

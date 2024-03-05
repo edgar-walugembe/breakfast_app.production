@@ -35,6 +35,7 @@ import axios from "axios";
 import { getUserUrl } from "../../constants";
 import { FaUserEdit } from "react-icons/fa";
 import { TbUserEdit } from "react-icons/tb";
+import { TiUserDelete } from "react-icons/ti";
 
 function createData(
   id,
@@ -207,9 +208,7 @@ function EnhancedTableToolbar(props) {
   const { setOpenDeleteUser } = useContext(ModalContext);
 
   const handleClickDelete = ({ selected }) => {
-    if (selected.length > 0) {
-      setOpenDeleteUser(true);
-    }
+    setOpenDeleteUser(true);
   };
 
   return (
@@ -249,7 +248,8 @@ function EnhancedTableToolbar(props) {
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton onClick={handleClickDelete}>
-            <DeleteIcon />
+            {/* <DeleteIcon /> */}
+            <TiUserDelete size={24} color="black" />
           </IconButton>
         </Tooltip>
       ) : (
@@ -464,7 +464,7 @@ export default function EnhancedTable({ onSelectUser }) {
                         <TableCell align="center">
                           {formatTimestamp(row.updatedAt)}
                         </TableCell>
-                        <TableCell align="left">
+                        <TableCell align="center">
                           <IconButton
                             // style={{ background: "yellow", color: "black" }}
                             // variant="outlined"

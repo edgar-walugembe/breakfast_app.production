@@ -1,4 +1,4 @@
-const { User, Sequelize, sequelize } = require("../database/models");
+const { User, Token, Sequelize, sequelize } = require("../database/models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -27,48 +27,25 @@ async function fetchAllUsers(req, res) {
 
 // delete a user
 async function deleteUser(req, res, next) {
-  // try {
-  //   const userId = parseInt(req.query.userId);
-
-  //   const deletedRows = await User.destroy({ where: { userId: userId } });
-
-  //   if (deletedRows > 0) {
-  //     return res
-  //       .status(202)
-  //       .send({ message: `User with id ${userId} deleted successfully` });
-  //   } else {
-  //     return res
-  //       .status(404)
-  //       .send({ error: `User with id ${userId} not found` });
-  //   }
-  // } catch (err) {
-  //   console.error(err);
-  //   return res
-  //     .status(500)
-  //     .send({ error: "An error occurred while processing the request" });
-  // }
   try {
-    const userIds = req.body.userIds; // Assuming user IDs are provided in the request body as an array
-    if (!userIds || !Array.isArray(userIds)) {
-      return res.status(400).json({ error: "Invalid user IDs provided" });
-    }
+    const userId = parseInt(req.query.userId);
 
-    // Delete users from the database
-    const deletedUsers = await User.destroy({ where: { userId: userIds } });
+    const deletedRows = await User.destroy({ where: { userId: userId } });
 
-    // Check if any users were deleted
-    if (deletedUsers > 0) {
-      return res.status(202).json({ message: "Users deleted successfully" });
+    if (deletedRows > 0) {
+      return res
+        .status(202)
+        .send({ message: `User with id ${userId} deleted successfully` });
     } else {
       return res
         .status(404)
-        .json({ error: "No users found with the provided IDs" });
+        .send({ error: `User with id ${userId} not found` });
     }
   } catch (err) {
     console.error(err);
     return res
       .status(500)
-      .json({ error: "An error occurred while processing the request" });
+      .send({ error: "An error occurred while processing the request" });
   }
 }
 

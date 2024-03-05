@@ -83,6 +83,9 @@ import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
+import { MdOutlineDeleteSweep } from "react-icons/md";
+import { BsFilterRight } from "react-icons/bs";
+import { IoFilterCircleOutline } from "react-icons/io5";
 
 function createData(id, name, product, price, status, timestamps) {
   const orderStatus = (status) => {
@@ -312,13 +315,16 @@ function EnhancedTableToolbar(props) {
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
-            <DeleteIcon />
+            {/* <DeleteIcon /> */}
+            <MdOutlineDeleteSweep size={24} color="black" />
           </IconButton>
         </Tooltip>
       ) : (
         <Tooltip title="Filter list">
           <IconButton>
-            <FilterListIcon />
+            {/* <FilterListIcon /> */}
+            <BsFilterRight size={24} color="black" />
+            {/* <IoFilterCircleOutline size={24} color="black" /> */}
           </IconButton>
         </Tooltip>
       )}

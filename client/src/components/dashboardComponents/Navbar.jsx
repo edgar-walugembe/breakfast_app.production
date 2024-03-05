@@ -39,8 +39,19 @@ const Navbar = ({ fetchProductData, fetchData }) => {
 
   const fetchUserData = async () => {
     try {
-      const res = await axios.get("http://localhost:8000");
-      console.log(res.data);
+      // const res = await axios.get("http://localhost:8000");
+      // console.log(res.data);
+      // Get the token from the browser's cookies
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        .split("=")[1];
+
+      const res = await axios.get("http://localhost:8000", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       setUserData(res.data);
     } catch (error) {

@@ -39,6 +39,8 @@ import { CreateProduct, DeleteProduct, EditProduct } from "../modalComponents";
 import axios from "axios";
 import { getPdtUrl_admin, baseUrl } from "../../constants";
 import { FiEdit3 } from "react-icons/fi";
+import { TbEditCircle } from "react-icons/tb";
+import { MdOutlineDeleteSweep } from "react-icons/md";
 
 function createData(id, img, name, unitPrice, timestamps, actions, adminId) {
   return {
@@ -236,7 +238,8 @@ function EnhancedTableToolbar(props) {
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton onClick={handleClickDelete}>
-            <DeleteIcon />
+            {/* <DeleteIcon /> */}
+            <MdOutlineDeleteSweep size={24} color="black" />
           </IconButton>
         </Tooltip>
       ) : (
@@ -469,7 +472,7 @@ export default function EnhancedTable() {
                             size="xs"
                             onClick={handleClickEdit}
                           >
-                            <FiEdit3 size={20} color="black" />
+                            <FiEdit3 size={15} color="black" />
                           </IconButton>
                         </TableCell>
                       </TableRow>
