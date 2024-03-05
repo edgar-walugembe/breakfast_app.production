@@ -36,6 +36,7 @@ import { getUserUrl } from "../../constants";
 import { FaUserEdit } from "react-icons/fa";
 import { TbUserEdit } from "react-icons/tb";
 import { TiUserDelete } from "react-icons/ti";
+import Navbar from "./Navbar";
 
 function createData(
   id,
@@ -370,13 +371,6 @@ export default function EnhancedTable({ onSelectUser }) {
   const [selectedUserData, setSelectedUserData] = useState(null);
   const handleRowClick = (userData) => {
     setSelectedUserData(userData);
-    // setSelectedUserData((prevSelected) => {
-    //   if (selected.indexOf(userData.userId) === -1) {
-    //     return [...prevSelected, userData];
-    //   } else {
-    //     return prevSelected.filter((user) => user.userId !== userData.userId);
-    //   }
-    // });
   };
 
   const handleClickCreate = () => {

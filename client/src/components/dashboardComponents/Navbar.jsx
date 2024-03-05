@@ -18,7 +18,7 @@ import { ModalContext } from "../../contexts/ModalContext";
 import axios from "axios";
 import { baseUrl } from "../../constants";
 
-const Navbar = ({ fetchProductData, fetchData }) => {
+const Navbar = ({ fetchProductData, fetchData, userId }) => {
   const date = new Date();
   const formattedDate = date.toLocaleDateString("en-US", {
     weekday: "long",
@@ -30,6 +30,7 @@ const Navbar = ({ fetchProductData, fetchData }) => {
   Navbar.propTypes = {
     fetchData: PropTypes.func,
     fetchProductData: PropTypes.func,
+    userId: PropTypes.number,
   };
 
   const name = "eedga";
@@ -40,11 +41,9 @@ const Navbar = ({ fetchProductData, fetchData }) => {
 
   const fetchUserData = async (token) => {
     try {
-      const res = await axios.get(`${baseUrl}?userId=${1}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(`${baseUrl}?userId=${1}`);
+
+      console.log(token);
 
       setUserData(res.data);
     } catch (error) {

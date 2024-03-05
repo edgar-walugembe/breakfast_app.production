@@ -33,11 +33,12 @@ async function loginUser(req, res, next) {
     }
 
     const userRole = user.userType;
+    const userId = user.userId;
 
     req.user = {
       name: user.name,
       userRole: user.userType,
-      userId: user.userId,
+      userId: userId,
     };
 
     let jwtSecret;
@@ -68,7 +69,7 @@ async function loginUser(req, res, next) {
       {
         name: user.name,
         userRole: user.userType,
-        userId: user.userId,
+        userId: userId,
       },
       jwtSecret
     );
@@ -81,6 +82,7 @@ async function loginUser(req, res, next) {
       message: "Authentication successful",
       token: jwtToken,
       redirectUrl,
+      userId,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
