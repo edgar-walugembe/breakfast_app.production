@@ -1,0 +1,42 @@
+#server#
+
+#dependencies
+/server/node_modules
+
+#env
+/server/.env
+/client/.env
+
+
+#client#
+
+#dependencies
+/client/node_modules
+/client/.pnp
+/client/.pnp.js
+/client/src/reportWebVitals
+/client/src/setupTests
+/client/src/App.test
+
+# testing
+/client/coverage
+
+
+# production
+/client/dist
+
+# misc
+/client/.DS_Store
+/client/.env.local
+/client/.env.development.local
+/client/.env.test.local
+/client/.env.production.local
+
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
+
+#break-app
+
+/node_modules
+/.vscode
