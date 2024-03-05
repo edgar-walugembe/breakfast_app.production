@@ -16,7 +16,7 @@ const insertToken = async (userId, token, expiresAt) => {
   }
 };
 
-async function authenticateToken(req, res, next) {
+async function loginUser(req, res, next) {
   const { name, password } = req.body;
 
   try {
@@ -88,7 +88,7 @@ async function authenticateToken(req, res, next) {
 }
 
 module.exports = {
-  authenticateToken,
+  loginUser,
 };
 
 // switch (userRole) {

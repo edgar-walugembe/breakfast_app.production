@@ -12,10 +12,8 @@ const productRouter = require("./routes/product");
 const orderRouter = require("./routes/order");
 const passwordRouter = require("./routes/password");
 
-const { authenticateToken } = require("./authUser");
+const { loginUser } = require("./authUser");
 const { loginToken } = require("./loginToken");
-
-const { loginUser } = require("./controllers/user-controller");
 
 const app = express();
 
@@ -32,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 //login page
-app.post("/", authenticateToken);
+app.post("/", loginUser);
 app.get("/", loginToken, (req, res) => {
   const user = req.user;
   res.json({ message: "Authenticated user", user: user });

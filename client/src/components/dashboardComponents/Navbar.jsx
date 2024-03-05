@@ -16,6 +16,7 @@ import PropTypes from "prop-types";
 
 import { ModalContext } from "../../contexts/ModalContext";
 import axios from "axios";
+import { baseUrl } from "../../constants";
 
 const Navbar = ({ fetchProductData, fetchData }) => {
   const date = new Date();
@@ -37,25 +38,17 @@ const Navbar = ({ fetchProductData, fetchData }) => {
 
   const [userData, setUserData] = useState(null);
 
-  const fetchUserData = async () => {
+  const fetchUserData = async (token) => {
     try {
-      // const res = await axios.get("http://localhost:8000");
-      // console.log(res.data);
-      // Get the token from the browser's cookies
-      const token = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        .split("=")[1];
-
-      const res = await axios.get("http://localhost:8000", {
+      const res = await axios.get(baseUrl, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      setUserData(res.data);
+      return res.data;
     } catch (error) {
-      console.error("Error fetching user data:", error);
+      throw new Error("Error fetching user data: " + error.message);
     }
   };
 
