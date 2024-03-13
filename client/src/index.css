@@ -13,12 +13,10 @@
 }
 
 :root {
-  --black-gradient: linear-gradient(
-    144.39deg,
-    #ffffff -278.56%,
-    #6d6d6d -78.47%,
-    #11101d 91.61%
-  );
+  --black-gradient: linear-gradient(144.39deg,
+      #ffffff -278.56%,
+      #6d6d6d -78.47%,
+      #11101d 91.61%);
   line-height: 1.5;
   background-color: #ffffff33;
   font-synthesis: none;
@@ -50,6 +48,7 @@ body {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -60,12 +59,10 @@ body {
 }
 
 .bg-black-gradient {
-  background: linear-gradient(
-    144.39deg,
-    #ffffff -278.56%,
-    #6d6d6d -78.47%,
-    #11101d 91.61%
-  );
+  background: linear-gradient(144.39deg,
+      #ffffff -278.56%,
+      #6d6d6d -78.47%,
+      #11101d 91.61%);
 }
 
 .outlet {
@@ -85,7 +82,8 @@ body {
 }
 
 .menu {
-  background-color: rgba(0, 0, 0, 0.568);
+  /* background-color: rgba(0, 0, 0, 0.568); */
+  background-color: black;
 
   .menuSpan {
     background-color: #f7b900;
@@ -97,6 +95,7 @@ body {
 .cards {
   grid-template-columns: repeat(auto-fit, minmax(220px, auto));
   grid-area: 1.5rem;
+
   .card {
     position: relative;
     cursor: pointer;
@@ -121,7 +120,7 @@ body {
   }
 }
 
-.button-yellow > .yellow {
+.button-yellow>.yellow {
   background: yellow;
 }
 
