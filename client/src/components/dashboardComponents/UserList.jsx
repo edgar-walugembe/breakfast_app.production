@@ -36,7 +36,6 @@ import { getUserUrl } from "../../constants";
 import { FaUserEdit } from "react-icons/fa";
 import { TbUserEdit } from "react-icons/tb";
 import { TiUserDelete } from "react-icons/ti";
-import Navbar from "./Navbar";
 
 function createData(
   id,
@@ -439,6 +438,7 @@ export default function EnhancedTable({ onSelectUser }) {
                             inputProps={{
                               "aria-labelledby": labelId,
                             }}
+                            name="label"
                           />
                         </TableCell>
                         <TableCell

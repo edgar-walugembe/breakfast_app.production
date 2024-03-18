@@ -41,7 +41,12 @@ const Login = () => {
         const res = await axios.post(baseUrl, user);
         console.log(res);
 
-        const { token, redirectUrl } = res.data;
+        const { token, userId, redirectUrl, userRole, username } = res.data;
+
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", userRole);
+        localStorage.setItem("name", username);
 
         navigate(redirectUrl);
       } catch (error) {

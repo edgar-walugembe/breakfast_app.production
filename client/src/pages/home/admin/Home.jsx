@@ -4,7 +4,7 @@ import { Menu, Navbar } from "../../../components/dashboardComponents";
 import { ModalContext } from "../../../contexts/ModalContext";
 import { Outlet } from "react-router-dom";
 import "./home.css";
-import Sidebar, { SidebarItem } from "../../../components/sidebar";
+
 import axios from "axios";
 import { baseUrl, getPdtUrl_admin, getUserUrl } from "../../../constants";
 import {

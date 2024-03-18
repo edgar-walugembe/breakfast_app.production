@@ -18,7 +18,7 @@ import { ModalContext } from "../../contexts/ModalContext";
 import axios from "axios";
 import { baseUrl } from "../../constants";
 
-const Navbar = ({ fetchProductData, fetchData, userId }) => {
+const Navbar = ({ fetchProductData, fetchData }) => {
   const date = new Date();
   const formattedDate = date.toLocaleDateString("en-US", {
     weekday: "long",
@@ -30,38 +30,68 @@ const Navbar = ({ fetchProductData, fetchData, userId }) => {
   Navbar.propTypes = {
     fetchData: PropTypes.func,
     fetchProductData: PropTypes.func,
-    userId: PropTypes.number,
   };
 
   const name = "eedga";
 
   const { data, setData, pdtData, setPdtData } = useContext(ModalContext);
 
-  const [userData, setUserData] = useState(null);
+  const [userId, setUserId] = useState("");
+  const [token, setToken] = useState("");
+  const [userRole, setUserRole] = useState("");
+  const [userName, setUserName] = useState("");
 
-  const fetchUserData = async (token) => {
-    try {
-      const res = await axios.get(`${baseUrl}?userId=${1}`);
+  // useEffect(() => {
+  //   fetchUserData();
+  // }, []);
 
-      console.log(token);
+  // const fetchUserData = async () => {
+  //   try {
+  //     // debugger;
+  //     const res = await axios.get(`${baseUrl}?userId=${userId}`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
 
-      setUserData(res.data);
-    } catch (error) {
-      throw new Error("Error fetching user data: " + error.message);
-    }
-  };
+  //     console.log(res);
+
+  //     setUserData(res.data);
+  //   } catch (error) {
+  //     // throw new Error("Error fetching user data: " + error.message);
+  //     console.error("Error fetching user data: " + error.message);
+  //   }
+  // };
 
   useEffect(() => {
-    fetchUserData();
-  }, []);
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+    const storedUserRole = localStorage.getItem("role");
+    if (storedUserRole) {
+      setUserRole(storedUserRole);
+    }
+    const storedUserName = localStorage.getItem("name");
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+
+    // console.log(userId);
+    // console.log(token);
+    // console.log(userRole);
+    // console.log(userName);
+  }, [token, userName, userRole, userId]);
 
   return (
     <div className="surface-ground px-2 py-2 md:px-4 lg:px-6">
       <div className="grid">
         <div className="flex justify-between col-12">
           <div className="flex flex-col text-black">
-            <h5 className="">Hello, {userData && userData.user.name}</h5>
-            <span>{userData && userData.user.userRole}</span>
+            <h5 className="">Hello, {userName}</h5>
+            <span>{userRole}</span>
             <p className="font-semibold text-[12px]">{formattedDate}</p>
           </div>
 

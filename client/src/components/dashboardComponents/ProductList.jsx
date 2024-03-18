@@ -439,6 +439,7 @@ export default function EnhancedTable() {
                             inputProps={{
                               "aria-labelledby": labelId,
                             }}
+                            name="label"
                           />
                         </TableCell>
                         <TableCell

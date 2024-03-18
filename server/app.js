@@ -33,10 +33,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.post("/", loginUser);
 
 // token route
-
 app.get("/", retrieveToken, authenticateUser, (req, res) => {
   const user = req.user;
   res.json({ message: "Authenticated user", user: user });
+  console.log(user);
 });
 
 // user routes
