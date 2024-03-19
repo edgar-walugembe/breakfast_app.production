@@ -17,6 +17,7 @@ import {
   Settings,
   UserCircle,
 } from "lucide-react";
+import Header from "../../../components/dashboardComponents/Header";
 
 const Home = () => {
   //product State
@@ -80,7 +81,8 @@ const Home = () => {
 
   return (
     <section className="home h-full">
-      <div className="flex">
+      <Header />
+      <div className="flex mt-[40px]">
         <ModalContext.Provider
           value={{
             product,

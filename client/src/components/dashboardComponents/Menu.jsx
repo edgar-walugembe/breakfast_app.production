@@ -20,27 +20,9 @@ const Menu = () => {
 
   return (
     <div
-      className={`menu w-[250px] h-full fixed flex flex-col justify-between`}
+      className={`menu w-[250px] h-full fixed flex flex-col items-center justify-center`}
     >
-      <div className="items-center flex justify-center mt-3">
-        <Link to="/Admin/Dashboard/">
-          <img
-            src={logo}
-            alt="app_logo"
-            className="h-[35px] hidden sm:inline"
-          />
-        </Link>
-
-        <Link to="/Admin/Dashboard/">
-          <img
-            src={favicon}
-            alt="app_logo"
-            className="h-[50px] inline sm:hidden"
-          />
-        </Link>
-      </div>
-
-      <div className="flex flex-col justify-between gap-5 ">
+      <div className="flex flex-col justify-between gap-5  w-full">
         <div
           className={`rounded menuSpan ${isActive === 1 ? "active" : ""}`}
           onClick={() => toggleActive(1)}
@@ -104,7 +86,7 @@ const Menu = () => {
         </div>
       </div>
 
-      <div className="mb-4 sm:mb-2 items-center flex justify-center">
+      {/* <div className="mb-4 sm:mb-2 items-center flex justify-center">
         <Link to="https://www.odysseytech.co/">
           <img
             src={odyssey_logo}
@@ -120,7 +102,7 @@ const Menu = () => {
             className={`h-[50px] inline sm:hidden`}
           />
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };

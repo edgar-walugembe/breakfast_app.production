@@ -4,7 +4,7 @@ import EditProduct from "./EditProduct";
 import EditUser from "./EditUser";
 import Menu from "./Menu";
 import Navbar from "./Navbar";
-import Orders from "./Orders";
+import Orders from "./Header.jsx";
 import OrderHistory from "./OrderHistory";
 import UserList from "./UserList";
 import Notification from "./Notification";

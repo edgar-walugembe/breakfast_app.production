@@ -12,6 +12,7 @@ import { GiCash } from "react-icons/gi";
 
 //context import
 import { UserOrderContext } from "../../contexts/UserOrderContext";
+import { IoIosExit } from "react-icons/io";
 
 const Menu = () => {
   //active State
@@ -99,6 +100,21 @@ const Menu = () => {
             <GiCash className="w-[22px] h-[22px] text-black" />
             <span className="text-black text-[14px] hidden sm:inline-block">
               Finances
+            </span>
+          </Link>
+        </div>
+
+        <div
+          className={`rounded menuSpan ${isActive === 3 ? "active" : ""}`}
+          onClick={() => toggleActive(3)}
+        >
+          <Link
+            to="/"
+            className="flex flex-col justify-center items-center w-full p-2"
+          >
+            <IoIosExit className="w-[22px] h-[22px] text-black" />
+            <span className="text-black text-[14px] hidden sm:inline-block">
+              Log Out
             </span>
           </Link>
         </div>
