@@ -41,6 +41,11 @@ const Login = () => {
         const res = await axios.post(baseUrl, user);
         console.log(res);
 
+        axios.interceptors.request.use((request) => {
+          console.log("Request Headers:", request.headers);
+          return request;
+        });
+
         const { token, userId, redirectUrl, userRole, username } = res.data;
 
         localStorage.setItem("userId", userId);

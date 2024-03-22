@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -44,6 +44,24 @@ function CreateProduct({ fetchData }) {
     adminId: Yup.number().integer().required("adminId is required"),
   });
 
+  // adminId
+  const [userId, setUserId] = useState("");
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+
+    // console.log(userId);
+    // console.log(token);
+  }, [token, userId]);
+
   const handleSubmit = async (values) => {
     const form = pdtRef.current;
 
@@ -57,13 +75,24 @@ function CreateProduct({ fetchData }) {
       formData.append("name", values.name);
       formData.append("unitPrice", values.unitPrice);
       formData.append("img", form.img.files[0]); // Access the file via form.img.files[0]
-      formData.append("adminId", adminId);
+      formData.append("adminId", userId);
 
       console.log("Form values:", values);
       console.log("new form values:", formData);
 
       try {
-        const res = await axios.post(createPdtUrl_admin, formData);
+        const res = await axios.post(createPdtUrl_admin, formData, {
+          headers: {
+            Authorization: `${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        axios.interceptors.request.use((request) => {
+          console.log("Request Headers:", request.headers);
+          return request;
+        });
+
         if (res.status === 201) {
           form.reset();
           setValidated(false);
@@ -92,6 +121,7 @@ function CreateProduct({ fetchData }) {
             name: "",
             unitPrice: "",
             img: "",
+            adminId: userId,
           }}
           validationSchema={schema}
           onSubmit={(values, { setSubmitting }) => {
@@ -207,26 +237,3 @@ function CreateProduct({ fetchData }) {
 }
 
 export default CreateProduct;
-
-{
-  /* <FormControl autoFocus fullWidth margin="dense">
-                    <TextField
-                      autoFocus
-                      margin="dense"
-                      id="adminId"
-                      name="adminId"
-                      label="Admin Id"
-                      type="text"
-                      fullWidth
-                      value={values.adminId}
-                      onChange={handleChange}
-                      error={touched.adminId && !!errors.adminId}
-                    />
-                    <ErrorMessage
-                      name="adminId"
-                      component="p"
-                      className="text-red-600"
-                    />
-</FormControl>
-*/
-}

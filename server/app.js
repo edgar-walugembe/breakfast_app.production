@@ -12,7 +12,7 @@ const productRouter = require("./routes/product");
 const orderRouter = require("./routes/order");
 const passwordRouter = require("./routes/password");
 
-const { loginUser } = require("./authUser");
+const { loginUser, authenticateToken } = require("./authUser");
 const { authenticateUser, retrieveToken } = require("./loginToken");
 
 const app = express();
@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // login route
-app.post("/", loginUser);
+app.post("/", authenticateToken, loginUser);
 
 // token route
 app.get("/", retrieveToken, authenticateUser, (req, res) => {
@@ -44,13 +44,13 @@ app.use("/User/home", userRouter);
 
 //admin routes
 app.use("/Admin/Dashboard", indexRouter);
-app.use("/Admin/Dashboard/users", userRouter);
+app.use("/Admin/Dashboard/Users", userRouter);
 
 // accessible routes for both admin and user
-app.use("/Admin/Dashboard/products", productRouter);
-app.use("/Admin/Dashboard/orders", orderRouter);
-app.use("/User/home/products", productRouter);
-app.use("/User/home/orders", orderRouter);
+app.use("/Admin/Dashboard/Products", productRouter);
+app.use("/Admin/Dashboard/Orders", orderRouter);
+app.use("/User/home/Products", productRouter);
+app.use("/User/home/Orders", orderRouter);
 
 //password routes
 app.use("/Password", passwordRouter);

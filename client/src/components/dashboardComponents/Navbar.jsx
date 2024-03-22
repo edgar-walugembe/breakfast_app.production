@@ -41,26 +41,6 @@ const Navbar = ({ fetchProductData, fetchData }) => {
   const [userRole, setUserRole] = useState("");
   const [userName, setUserName] = useState("");
 
-  // useEffect(() => {
-  //   fetchUserData();
-  // }, []);
-
-  // const fetchUserData = async () => {
-  //   try {
-  //     // debugger;
-  //     const res = await axios.get(`${baseUrl}?userId=${userId}`, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     });
-
-  //     console.log(res);
-
-  //     setUserData(res.data);
-  //   } catch (error) {
-  //     // throw new Error("Error fetching user data: " + error.message);
-  //     console.error("Error fetching user data: " + error.message);
-  //   }
-  // };
-
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
     if (storedUserId) {
@@ -95,7 +75,7 @@ const Navbar = ({ fetchProductData, fetchData }) => {
             <p className="font-semibold text-[12px]">{formattedDate}</p>
           </div>
 
-          <div className="flex gap-4 items-center">
+          {/* <div className="flex gap-4 items-center">
             <Link to="/Admin/Dashboard/user_account/">
               <FaUser className="w-[20px] h-[20px] text-black" />
             </Link>
@@ -105,7 +85,7 @@ const Navbar = ({ fetchProductData, fetchData }) => {
             <Link to="/Admin/Dashboard/user_settings/">
               <IoSettings className="w-[20px] h-[20px] text-black" />
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
 

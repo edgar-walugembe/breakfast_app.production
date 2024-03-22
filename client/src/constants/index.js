@@ -82,7 +82,7 @@ export const resetPasswordUrl = `${passwordUrl}/reset_password`;
 export const changePasswordUrl = `${passwordUrl}/change_password`;
 
 //user urls
-export const UserUrl = "http://localhost:8000/Admin/Dashboard/users";
+export const UserUrl = "http://localhost:8000/Admin/Dashboard/Users";
 export const getUserUrl = `${UserUrl}/all`;
 export const createUserUrl = `${UserUrl}/createUser`;
 export const editUserUrl = `${UserUrl}/editUser`;
@@ -90,14 +90,14 @@ export const deleteUserUrl = `${UserUrl}/deleteUser`;
 
 //product urls
 /*admin*/
-export const PdtUrl_admin = "http://localhost:8000/Admin/Dashboard/products";
+export const PdtUrl_admin = "http://localhost:8000/Admin/Dashboard/Products";
 export const getPdtUrl_admin = `${PdtUrl_admin}/all`;
 export const createPdtUrl_admin = `${PdtUrl_admin}/createPdt`;
 export const editPdtUrl_admin = `${PdtUrl_admin}/editPdt`;
 export const deletePdtUrl_admin = `${PdtUrl_admin}/deletePdt`;
 /*user*/
-export const PdtUrl_user = "http://localhost:8000/User/home/products";
+export const PdtUrl_user = "http://localhost:8000/User/home/Products";
 export const getPdtUrl_user = `${PdtUrl_user}/all`;
 
 //order urls
-export const OrderUrl = "http://localhost:8000/Admin/Dashboard/orders";
+export const OrderUrl = "http://localhost:8000/Admin/Dashboard/Orders";

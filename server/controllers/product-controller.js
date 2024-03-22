@@ -1,13 +1,38 @@
 const { Product, Sequelize, sequelize } = require("../database/models");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 // create new product
+async function uploadProductImage(req, res, next) {
+  try {
+    if (!req.file) {
+      return res.status(404).json({ error: "No file provided" });
+    }
+
+    // const fileName = req.file.filename;
+    // res
+    //   .status(200)
+    //   .json({ message: `Product Image ${fileName} uploaded successfully` });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 async function createProduct(req, res) {
   try {
     const headers = {
       "Content-Type": "multipart/form-data",
     };
 
-    const adminId = req.user.userId;
+    const token = req.cookies.token;
+
+    if (!token) {
+      return res.status(401).json({ error: "Token not found in the cookie" });
+    }
+
+    const decoded = jwt.decode(token);
+    const adminId = decoded.userId;
 
     await uploadProductImage(req, res);
 
@@ -81,22 +106,6 @@ async function editProduct(req, res, next) {
   } catch (error) {
     console.error(error);
     return res.status(500).send({ error });
-  }
-}
-
-async function uploadProductImage(req, res, next) {
-  try {
-    if (!req.file) {
-      return res.status(404).json({ error: "No file provided" });
-    }
-
-    // const fileName = req.file.filename;
-    // res
-    //   .status(200)
-    //   .json({ message: `Product Image ${fileName} uploaded successfully` });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
   }
 }
 

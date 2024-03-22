@@ -4,7 +4,6 @@ require("dotenv").config();
 
 const retrieveToken = async (req, res, next) => {
   try {
-    // const userId = Token.userId;
     const token = req.cookies.token;
 
     if (!token) {

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 // import styles, { layout } from "../../style";
 import { close, logo, menu } from "../../assets";
 import { Link } from "react-router-dom";
@@ -15,6 +15,10 @@ import { UserOrderContext } from "../../contexts/UserOrderContext";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const [userId, setUserId] = useState("");
+  const [token, setToken] = useState("");
+  const [userRole, setUserRole] = useState("");
+  const [userName, setUserName] = useState("");
 
   const date = new Date();
   const formattedDate = date.toLocaleDateString("en-US", {
@@ -27,13 +31,36 @@ const Navbar = () => {
   //order State
   const { count } = useContext(UserOrderContext);
 
-  const Username = "eedga";
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
+    const storedUserRole = localStorage.getItem("role");
+    if (storedUserRole) {
+      setUserRole(storedUserRole);
+    }
+    const storedUserName = localStorage.getItem("name");
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+
+    // console.log(userId);
+    // console.log(token);
+    // console.log(userRole);
+    // console.log(userName);
+  }, [token, userName, userRole, userId]);
+
   return (
     <div className="surface-ground px-2 py-1 md:px-4 lg:px-6 ">
       <div className="grid">
         <div className="flex justify-between col-12">
           <div className="flex flex-col text-black">
-            <h5 className="">Hello, {Username}</h5>
+            <h5 className="">Hello, {userName}</h5>
             <p className="font-semibold text-[12px]">{formattedDate}</p>
           </div>
 
