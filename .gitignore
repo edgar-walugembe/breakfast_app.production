@@ -23,7 +23,7 @@
 
 
 # production
-#/client/dist
+/client/dist
 
 # misc
 /client/.DS_Store
