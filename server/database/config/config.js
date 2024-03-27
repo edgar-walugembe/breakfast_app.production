@@ -16,8 +16,8 @@ module.exports = {
     dialect: "mysql",
   },
   production: {
-    username: "root",
-    password: null,
+    username: "eddie",
+    password: "p@ssw0rd81711",
     database: "breakApp_production.db",
     host: "localhost",
     dialect: "mysql",
