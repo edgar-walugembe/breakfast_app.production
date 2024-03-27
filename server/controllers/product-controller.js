@@ -27,10 +27,10 @@ async function createProduct(req, res) {
       img: req.file ? req.file.filename : null,
     });
 
-    return res.status(201).set(headers).json({ product });
+    return res.status(201).set(headers).send({ product });
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ err });
+    return res.status(500).send({ err });
   }
 }
 
