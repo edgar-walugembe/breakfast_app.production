@@ -305,7 +305,7 @@ async function authenticateToken(req, res, next) {
 
     await insertToken(user.userId, jwtToken, null);
 
-    res.cookie("token", jwtToken, { httpOnly: true });
+    res.cookie("token", jwtToken, { httpOnly: true }, { path: "/" });
 
     res.json({
       message: "Authentication successful",

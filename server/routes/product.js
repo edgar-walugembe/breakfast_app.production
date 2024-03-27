@@ -20,13 +20,7 @@ router.get("/", function (req, res) {
 });
 
 /* createProduct Route. */
-router.post(
-  "/createPdt",
-  authenticateUser,
-  authorizeUser(["Admin", "SuperAdmin"]),
-  upload.single("img"),
-  createProduct
-);
+router.post("/createPdt", upload.single("img"), createProduct);
 
 /* deleteProduct Route. */
 router.delete("/deletePdt", deleteProduct);

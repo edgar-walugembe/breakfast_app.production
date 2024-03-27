@@ -23,8 +23,6 @@ const authenticateUser = async (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
-  let jwtSecret;
-
   const JWT_SECRET_USER = process.env.JWT_SECRET_USER;
   const JWT_SECRET_ADMIN = process.env.JWT_SECRET_ADMIN;
   const JWT_SECRET_SUPERADMIN = process.env.JWT_SECRET_SUPERADMIN;
@@ -33,11 +31,13 @@ const authenticateUser = async (req, res, next) => {
     return res.status(500).json({ error: "JWT secret keys are not provided" });
   }
 
+  let jwtSecret;
+
   jwt.verify(token, JWT_SECRET_USER, (err, decodedToken) => {
     if (err) {
       return res.status(401).json({ message: "Invalid token" });
     } else {
-      const userRole = decodedToken.role;
+      const userRole = decodedToken.userRole;
       switch (userRole) {
         case "User":
           jwtSecret = JWT_SECRET_USER;
@@ -51,15 +51,8 @@ const authenticateUser = async (req, res, next) => {
         default:
           return res.status(500).json({ error: "Invalid user role" });
       }
-
-      jwt.verify(token, jwtSecret, (err, decodedToken) => {
-        if (err) {
-          return res.status(401).json({ message: "Invalid token" });
-        } else {
-          req.user = decodedToken;
-          next();
-        }
-      });
+      req.user = decodedToken;
+      next();
     }
   });
 };
@@ -67,7 +60,7 @@ const authenticateUser = async (req, res, next) => {
 // authorization
 const authorizeUser = (allowedRoles) => {
   return (req, res, next) => {
-    const userRole = req.user.role;
+    const userRole = req.user.userRole;
     if (allowedRoles.includes(userRole)) {
       return next();
     } else {

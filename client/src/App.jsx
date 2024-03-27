@@ -33,9 +33,11 @@ import {
   UserHistory,
 } from "./components/userAppComponents";
 import { FormContext } from "./contexts";
+import axios from "axios";
 
 const App = () => {
   const Layout = () => {
+    axios.defaults.withCredentials = true;
     return (
       <div className="w-full h-full font-poppins">
         <Outlet />

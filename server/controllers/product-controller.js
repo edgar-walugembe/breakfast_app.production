@@ -8,11 +8,6 @@ async function uploadProductImage(req, res, next) {
     if (!req.file) {
       return res.status(404).json({ error: "No file provided" });
     }
-
-    // const fileName = req.file.filename;
-    // res
-    //   .status(200)
-    //   .json({ message: `Product Image ${fileName} uploaded successfully` });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -25,21 +20,11 @@ async function createProduct(req, res) {
       "Content-Type": "multipart/form-data",
     };
 
-    const token = req.cookies.token;
-
-    if (!token) {
-      return res.status(401).json({ error: "Token not found in the cookie" });
-    }
-
-    const decoded = jwt.decode(token);
-    const adminId = decoded.userId;
-
     await uploadProductImage(req, res);
 
     const product = await Product.create({
       ...req.body,
       img: req.file ? req.file.filename : null,
-      adminId: adminId,
     });
 
     return res.status(201).set(headers).json({ product });

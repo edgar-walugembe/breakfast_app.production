@@ -11,6 +11,8 @@ import { baseUrl } from "../../constants";
 //image imports
 import { logo_spin } from "../../assets";
 
+import Cookies from "js-cookie";
+
 const Login = () => {
   //form Handling
   const { Formik } = formik;
@@ -38,15 +40,14 @@ const Login = () => {
       };
 
       try {
-        const res = await axios.post(baseUrl, user);
+        const res = await axios.post(baseUrl, user, {
+          withCredentials: true,
+        });
         console.log(res);
 
-        axios.interceptors.request.use((request) => {
-          console.log("Request Headers:", request.headers);
-          return request;
-        });
-
         const { token, userId, redirectUrl, userRole, username } = res.data;
+
+        Cookies.set("token", token, { path: "/" });
 
         localStorage.setItem("userId", userId);
         localStorage.setItem("token", token);

@@ -17,7 +17,12 @@ const { authenticateUser, retrieveToken } = require("./loginToken");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
