@@ -7,7 +7,7 @@ import { TbShoppingCartPlus } from "react-icons/tb";
 //context imports
 import { UserOrderContext } from "../../contexts/UserOrderContext";
 
-const Card = ({ title, price, img }) => {
+const Card = ({ name, unitPrice, img }) => {
   //order State
   const { setCount } = useContext(UserOrderContext);
 
@@ -20,17 +20,13 @@ const Card = ({ title, price, img }) => {
     <div className="col-12 md:col-6 lg:col-4 relative">
       <div className="card flex flex-col rounded bg-white">
         <div className="card.img">
-          <img
-            src={img}
-            alt={title}
-            className="w-full h-[200px] rounded-t-md"
-          />
+          <img src={img} alt={name} className="w-full h-[200px] rounded-t-md" />
         </div>
 
-        <h3 className="text-center font-medium text-[16px]">{title}</h3>
+        <h3 className="text-center font-medium text-[16px]">{name}</h3>
 
         <span className="text-center text-black font-medium mx-14 mb-1">
-          Shs.{price}
+          Shs.{unitPrice}
         </span>
 
         <div
@@ -46,9 +42,9 @@ const Card = ({ title, price, img }) => {
 };
 
 Card.propTypes = {
-  title: PropTypes.string,
+  name: PropTypes.string,
   img: PropTypes.string,
-  price: PropTypes.number,
+  unitPrice: PropTypes.number,
 };
 
 export default Card;
