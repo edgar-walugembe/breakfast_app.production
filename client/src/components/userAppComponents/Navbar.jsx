@@ -29,7 +29,7 @@ const Navbar = () => {
   });
 
   //order State
-  const { count } = useContext(UserOrderContext);
+  const { count, pdtData, setPdtData } = useContext(UserOrderContext);
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
@@ -128,7 +128,9 @@ const Navbar = () => {
                 <span className="block text-primary font-medium mb-3">
                   Products
                 </span>
-                <div className="text-black font-medium text-xl">40</div>
+                <div className="text-black font-medium text-xl">
+                  {pdtData.length}
+                </div>
               </div>
               <div
                 className="flex items-center justify-center bg-cyan rounded"
