@@ -2,11 +2,38 @@ const { User, Token, Sequelize, sequelize } = require("../database/models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const nodemailer = require("nodemailer");
 
 // create new User
+async function sendEmail(to, subject, body) {
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    },
+  });
+
+  let mailOptions = {
+    from: process.env.EMAIL,
+    to: to,
+    subject: subject,
+    text: body,
+  };
+
+  await transporter.sendMail(mailOptions);
+}
+
 async function createUser(req, res) {
   try {
     const user = await User.create(req.body);
+
+    await sendEmail(
+      user.email,
+      "Hello, " + user.name,
+      "Please set your password by clicking on the following link: https://breakfast-app-production.onrender.com/password/set_password/:id"
+    );
+
     return res.status(201).send({ user });
   } catch (err) {
     console.error(err);
