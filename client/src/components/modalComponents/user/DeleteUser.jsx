@@ -31,62 +31,62 @@ function DeleteUser({ selectedUserData, fetchData }) {
   };
 
   const handleDelete = async (userId) => {
-    // console.log("attempting to delete developer:", selectedUserData);
+    console.log("attempting to delete developer:", selectedUserData);
 
-    // const res = await axios.delete(`${deleteUserUrl}?userId=${userId}`);
+    const res = await axios.delete(`${deleteUserUrl}?userId=${userId}`);
 
-    // try {
-    //   if (res.status === 202) {
-    //     setUser((prevUser) =>
-    //       prevUser.filter((user) => user.userId !== userId)
-    //     );
-    //   } else {
-    //     console.error(
-    //       "Failed to delete user from express_db:",
-    //       res.data.message
-    //     );
-    //   }
-    // } catch (error) {
-    //   if (error.response) {
-    //     console.error(
-    //       "Error deleting user from express_db:",
-    //       error.response.status,
-    //       error.response.data
-    //     );
-    //   } else if (error.request) {
-    //     console.error("No response received:", error.request);
-    //   } else {
-    //     console.error("Error setting up the request:", error.message);
-    //   }
-    // }
-
-    // fetchData();
-    // handleCloseDelete();
-
-    if (selectedUserData.length > 0) {
-      try {
-        const userIds = selectedUserData.map((user) => user.userId);
-        await Promise.all(
-          userIds.map(async (userId) => {
-            const res = await axios.delete(`${deleteUserUrl}?userId=${userId}`);
-            if (res.status === 202) {
-              setUser((prevUser) =>
-                prevUser.filter((user) => user.userId !== userId)
-              );
-            } else {
-              console.error(
-                `Failed to delete user with id ${userId} from express_db:`,
-                res.data.message
-              );
-            }
-          })
+    try {
+      if (res.status === 202) {
+        setUser((prevUser) =>
+          prevUser.filter((user) => user.userId !== userId)
         );
-        fetchData();
-        handleCloseDelete();
-      } catch (error) {
-        console.error("Error deleting user(s) from express_db:", error);
+      } else {
+        console.error(
+          "Failed to delete user from express_db:",
+          res.data.message
+        );
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error(
+          "Error deleting user from express_db:",
+          error.response.status,
+          error.response.data
+        );
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error setting up the request:", error.message);
       }
     }
+
+    fetchData();
+    handleCloseDelete();
+
+    // if (selectedUserData.length > 0) {
+    //   try {
+    //     const userIds = selectedUserData.map((user) => user.userId);
+    //     await Promise.all(
+    //       userIds.map(async (userId) => {
+    //         const res = await axios.delete(`${deleteUserUrl}?userId=${userId}`);
+    //         if (res.status === 202) {
+    //           setUser((prevUser) =>
+    //             prevUser.filter((user) => user.userId !== userId)
+    //           );
+    //         } else {
+    //           console.error(
+    //             `Failed to delete user with id ${userId} from express_db:`,
+    //             res.data.message
+    //           );
+    //         }
+    //       })
+    //     );
+    //     fetchData();
+    //     handleCloseDelete();
+    //   } catch (error) {
+    //     console.error("Error deleting user(s) from express_db:", error);
+    //   }
+    // }
   };
 
   return (
