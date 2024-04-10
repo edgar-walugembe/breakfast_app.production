@@ -174,7 +174,7 @@ const Login = () => {
             </Formik>
 
             <Link to="/password/reset_password/:id">
-              <p className="text-white font-semibold mt-2">
+              <p className="text-white mt-2">
                 Did You Set A Password? Set A Password.
               </p>
             </Link>
