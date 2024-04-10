@@ -31,7 +31,8 @@ async function createUser(req, res) {
     await sendEmail(
       user.email,
       "Hello, " + user.name,
-      "Please set your password by clicking on the following link: https://breakfast-app-production.onrender.com/password/set_password/:id"
+      `Please set your password by clicking on the following link: 
+      https://breakfast-app-chi.vercel.app/`
     );
 
     return res.status(201).send({ user });

@@ -92,7 +92,7 @@ const Login = () => {
           <div className="flex justify-end items-end p-0 gap-10">
             <div className={`rounded forgotSpan mb-2`}>
               <Link
-                to="/password/set_password/:id"
+                to="/password/reset_password/:id"
                 className="flex justify-evenly w-full p-2 "
               >
                 <span className="text-black font-semibold text-[14px]">
@@ -172,6 +172,12 @@ const Login = () => {
                 </Form>
               )}
             </Formik>
+
+            <p className="text-black font-bold mt-2">
+              <Link to="/password/reset_password/:id">
+                Did You Set A Password? Set A Password.
+              </Link>
+            </p>
           </div>
         </div>
       </div>

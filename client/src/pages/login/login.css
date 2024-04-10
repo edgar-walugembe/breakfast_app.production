@@ -10,13 +10,15 @@
   transform: translate(-50%, -50%);
   border-radius: 20px;
 
+  a {
+    text-decoration: none;
+  }
+
   .menuSpan {
     background-color: #f7b900;
     width: 250px;
 
-    a {
-      text-decoration: none;
-    }
+
   }
 
   .content {
