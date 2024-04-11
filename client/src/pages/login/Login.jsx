@@ -175,7 +175,10 @@ const Login = () => {
 
             <Link to="/password/reset_password/:id">
               <p className="text-white mt-2">
-                Did You Set A Password? Set A Password.
+                Did You Set A Password?{" "}
+                <span className="text-black font-semibold">
+                  Set A Password.
+                </span>
               </p>
             </Link>
           </div>
