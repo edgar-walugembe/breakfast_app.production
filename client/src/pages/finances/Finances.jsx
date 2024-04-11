@@ -5,7 +5,7 @@ import { Debt } from "../../components/dashboardComponents";
 const Finances = () => {
   return (
     <div className="finances">
-      Finances
+      {/* Financial Tracking. */}
       <Debt />
     </div>
   );
