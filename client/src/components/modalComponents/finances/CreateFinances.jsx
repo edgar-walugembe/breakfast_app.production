@@ -23,6 +23,10 @@ import axios from "axios";
 
 import { createUserUrl } from "../../../constants";
 import PropTypes from "prop-types";
+import Cookies from "js-cookie";
+
+import { useState } from "react";
+import { useEffect } from "react";
 
 const CreateFinances = ({ fetchFinances }) => {
   const { openCreateFinances, setOpenCreateFinances, validated, setValidated } =
@@ -44,7 +48,26 @@ const CreateFinances = ({ fetchFinances }) => {
     paidDebt: Yup.number().integer().required("Paid Debt is required"),
     balance: Yup.number().integer().required("Balance Debt is required"),
     status: Yup.string().required("Debt Status is required"),
+    adminId: Yup.number().integer().required("adminId is required"),
   });
+
+  const [userId, setUserId] = useState("");
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+      Cookies.set("token", token, { path: "/" });
+    }
+
+    // console.log(userId);
+    // console.log(token);
+  }, [token, userId]);
 
   return (
     <div>
@@ -52,11 +75,11 @@ const CreateFinances = ({ fetchFinances }) => {
         <Formik
           initialValues={{
             name: "",
-            email: "",
-            company: "",
-            userType: "",
+            currentDebt: "",
+            paidDebt: "",
+            balance: "",
             status: "",
-            img: "",
+            adminId: userId,
           }}
           validationSchema={schema}
           onSubmit={(values, { setSubmitting }) => {

@@ -48,8 +48,9 @@ function createData(
   name,
   debtAmount,
   debtPaid,
-  status,
   debtTotal,
+  status,
+  adminId,
   actions
 ) {
   const orderStatus = (status) => {
@@ -88,6 +89,7 @@ function createData(
     color: color,
     debtTotal,
     actions,
+    adminId,
   };
 }
 
@@ -101,19 +103,19 @@ const formattedDate = date.toLocaleDateString({
 });
 
 const rows = [
-  createData(1, "edgar", "banana", 1000, "cleared", 2000),
-  createData(2, "sam", "samosa", 2000, "pending", 2000),
-  createData(3, "allan", "chapati", 600, "declined", 2000),
-  createData(4, "denno", "sausage", 1500, "pending", 2000),
-  createData(5, "peter", "rolex", 700, "declined", 2000),
-  createData(6, "paul", "rolex", 1600, "cleared", 2000),
-  createData(7, "robert", "pancakes", 1000, "pending", 2000),
-  createData(8, "sharon", "pancakes", 1500, "cleared", 2000),
-  createData(9, "daniel", "banana", 2000, "cleared", 2000),
-  createData(10, "hope", "shortcakes", 1000, "cleared", 2000),
-  createData(11, "aaron", "cassava", 1000, "pending", 2000),
-  createData(12, "aariela", "eggs", 2000, "pending", 2000),
-  createData(13, "leticia", "cassava", 1000, "declined", 2000),
+  createData(1, "edgar", 3000, 1000, "cleared", 2000, 1),
+  createData(2, "sam", 4000, 2000, "pending", 2000, 1),
+  createData(3, "allan", 2000, 600, "declined", 2000, 2),
+  createData(4, "denno", 3000, 1500, "pending", 2000, 1),
+  createData(5, "peter", 2000, 700, "declined", 2000, 1),
+  createData(6, "paul", 2000, 1600, "cleared", 2000, 2),
+  createData(7, "robert", 2000, 1000, "pending", 2000, 3),
+  createData(8, "sharon", 2000, 1500, "cleared", 2000, 1),
+  createData(9, "daniel", 3000, 2000, "cleared", 2000, 3),
+  createData(10, "hope", 1500, 1000, "cleared", 2000, 3),
+  createData(11, "aaron", 1000, 1000, "pending", 2000, 2),
+  createData(12, "aariela", 2000, 2000, "pending", 2000, 1),
+  createData(13, "leticia", 3000, 1000, "declined", 2000, 2),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -174,6 +176,12 @@ const headCells = [
     numeric: true,
     disablePadding: false,
     label: "Status",
+  },
+  {
+    id: "adminId",
+    numeric: true,
+    disablePadding: false,
+    label: "AdminId",
   },
   {
     id: "actions",
@@ -480,6 +488,9 @@ export default function EnhancedTable() {
                         <TableCell align="center">{row.debtTotal}</TableCell>
                         <TableCell align="center" className="relative">
                           {row.status}
+                        </TableCell>
+                        <TableCell align="center" className="relative">
+                          {row.adminId}
                         </TableCell>
                         <TableCell align="center">
                           <IconButton size="xs" onClick={handleClickEdit}>
