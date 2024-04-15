@@ -103,19 +103,19 @@ const formattedDate = date.toLocaleDateString({
 });
 
 const rows = [
-  createData(1, "edgar", 3000, 1000, "cleared", 2000, 1),
-  createData(2, "sam", 4000, 2000, "pending", 2000, 1),
-  createData(3, "allan", 2000, 600, "declined", 2000, 2),
-  createData(4, "denno", 3000, 1500, "pending", 2000, 1),
-  createData(5, "peter", 2000, 700, "declined", 2000, 1),
-  createData(6, "paul", 2000, 1600, "cleared", 2000, 2),
-  createData(7, "robert", 2000, 1000, "pending", 2000, 3),
-  createData(8, "sharon", 2000, 1500, "cleared", 2000, 1),
-  createData(9, "daniel", 3000, 2000, "cleared", 2000, 3),
-  createData(10, "hope", 1500, 1000, "cleared", 2000, 3),
-  createData(11, "aaron", 1000, 1000, "pending", 2000, 2),
-  createData(12, "aariela", 2000, 2000, "pending", 2000, 1),
-  createData(13, "leticia", 3000, 1000, "declined", 2000, 2),
+  createData(1, "edgar", 3000, 1000, 2000, "cleared", 1),
+  createData(2, "sam", 4000, 2000, 2000, "pending", 1),
+  createData(3, "allan", 2000, 600, 2000, "declined", 2),
+  createData(4, "denno", 3000, 1500, 2000, "pending", 1),
+  createData(5, "peter", 2000, 700, 2000, "declined", 1),
+  createData(6, "paul", 2000, 1600, 2000, "cleared", 2),
+  createData(7, "robert", 2000, 1000, 2000, "pending", 3),
+  createData(8, "sharon", 2000, 1500, 2000, "cleared", 1),
+  createData(9, "daniel", 3000, 2000, 2000, "cleared", 3),
+  createData(10, "hope", 1500, 1000, 2000, "cleared", 3),
+  createData(11, "aaron", 1000, 1000, 2000, "pending", 2),
+  createData(12, "aariela", 2000, 2000, 2000, "pending", 1),
+  createData(13, "leticia", 3000, 1000, 2000, "declined", 2),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -487,7 +487,16 @@ export default function EnhancedTable() {
                         <TableCell align="center">{row.debtPaid}</TableCell>
                         <TableCell align="center">{row.debtTotal}</TableCell>
                         <TableCell align="center" className="relative">
-                          {row.status}
+                          {/* {row.status} */}{" "}
+                          <span>
+                            <span
+                              style={{
+                                backgroundColor: row.background,
+                              }}
+                              className="status"
+                            ></span>
+                            {row.status}
+                          </span>
                         </TableCell>
                         <TableCell align="center" className="relative">
                           {row.adminId}

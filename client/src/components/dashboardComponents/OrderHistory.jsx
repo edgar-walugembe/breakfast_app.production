@@ -83,11 +83,22 @@ import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
+
+//icons imports
 import { MdOutlineDeleteSweep } from "react-icons/md";
 import { BsFilterRight } from "react-icons/bs";
 import { IoFilterCircleOutline } from "react-icons/io5";
+import { TbUserEdit } from "react-icons/tb";
 
-function createData(id, name, product, price, status, timestamps) {
+//context imports
+import { ModalContext } from "../../contexts/ModalContext";
+import {
+  CreateFinances,
+  DeleteFinances,
+  EditFinances,
+} from "../modalComponents";
+
+function createData(id, name, product, price, status, timestamps, actions) {
   const orderStatus = (status) => {
     if (status === "served") {
       return {
@@ -123,6 +134,7 @@ function createData(id, name, product, price, status, timestamps) {
     background: background,
     color: color,
     timestamps,
+    actions,
   };
 }
 
@@ -209,6 +221,12 @@ const headCells = [
     numeric: true,
     disablePadding: false,
     label: "Time Of Order",
+  },
+  {
+    id: "actions",
+    numeric: true,
+    disablePadding: false,
+    label: "Actions",
   },
 ];
 
@@ -406,6 +424,26 @@ export default function EnhancedTable() {
     [order, orderBy, page, rowsPerPage]
   );
 
+  //context
+  const { setOpenCreateFinances, setOpenEditFinances } =
+    React.useContext(ModalContext);
+
+  const [selectedUserData, setSelectedUserData] = React.useState(null);
+  const handleRowClick = (userData) => {
+    setSelectedUserData(userData);
+  };
+
+  const handleOpen = () => {
+    // console.log("create User opened");
+    setOpenCreateFinances(true);
+  };
+
+  const handleEdit = (userData) => {
+    console.log("edit User opened");
+    setOpenEditFinances(true);
+    setSelectedUserData(userData);
+  };
+
   return (
     <div className="surface-ground px-2 py-1 md:px-4 lg:px-6 ">
       <div className="grid mt-2">
@@ -476,6 +514,11 @@ export default function EnhancedTable() {
                           </span>
                         </TableCell>
                         <TableCell align="center">{row.timestamps}</TableCell>
+                        <TableCell align="center">
+                          <IconButton size="xs" onClick={handleEdit}>
+                            <TbUserEdit size={20} color="black" />
+                          </IconButton>
+                        </TableCell>
                       </TableRow>
                     );
                   })}

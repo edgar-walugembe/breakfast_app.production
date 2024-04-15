@@ -95,7 +95,7 @@ const CreateFinances = ({ fetchFinances }) => {
               autoComplete="off"
             >
               <DialogTitle className="flex justify-between">
-                <span>Add New User</span>
+                <span>Add New Financial Record</span>
                 <div
                   onClick={handleClose}
                   className="bg-black rounded-full p-2 w-[28px] h-[28px] items-center flex"
@@ -112,7 +112,7 @@ const CreateFinances = ({ fetchFinances }) => {
                       margin="dense"
                       id="name"
                       name="name"
-                      label="Username"
+                      label="Owner Name"
                       type="text"
                       fullWidth
                       value={values.name}
@@ -131,17 +131,17 @@ const CreateFinances = ({ fetchFinances }) => {
                       required
                       autoFocus
                       margin="dense"
-                      id="email"
-                      name="email"
-                      label="E-mail"
-                      type="email"
+                      id="currentDebt"
+                      name="currentDebt"
+                      label="Current Debt"
+                      type="currentDebt"
                       fullWidth
-                      value={values.email}
+                      value={values.currentDebt}
                       onChange={handleChange}
-                      error={touched.email && !!errors.email}
+                      error={touched.currentDebt && !!errors.currentDebt}
                     />
                     <ErrorMessage
-                      name="email"
+                      name="currentDebt"
                       component="p"
                       className="text-red-600"
                     />
@@ -150,44 +150,42 @@ const CreateFinances = ({ fetchFinances }) => {
 
                 <div className="flex gap-4">
                   <FormControl autoFocus fullWidth margin="dense">
-                    <InputLabel id="company-label">Company</InputLabel>
-                    <Select
-                      labelId="company-label"
-                      id="company"
-                      name="company"
-                      value={values.company}
-                      label="Company"
+                    <TextField
+                      required
+                      autoFocus
+                      margin="dense"
+                      id="paidDebt"
+                      name="paidDebt"
+                      label="Debt Cleared"
+                      type="paidDebt"
+                      fullWidth
+                      value={values.paidDebt}
                       onChange={handleChange}
-                      error={touched.company && !!errors.company}
-                    >
-                      <MenuItem value={"Odyssey"}>Odyssey</MenuItem>
-                      <MenuItem value={"Upti"}>Upti</MenuItem>
-                    </Select>
+                      error={touched.paidDebt && !!errors.paidDebt}
+                    />
                     <ErrorMessage
-                      name="company"
+                      name="paidDebt"
                       component="p"
                       className="text-red-600"
                     />
                   </FormControl>
 
                   <FormControl autoFocus fullWidth margin="dense">
-                    <InputLabel id="type-label">User Type</InputLabel>
-                    <Select
-                      labelId="type-label"
-                      id="userType"
-                      name="userType"
-                      value={values.userType}
-                      label="User Type"
+                    <TextField
+                      required
+                      autoFocus
+                      margin="dense"
+                      id="balance"
+                      name="balance"
+                      label="Debt Balance"
+                      type="balance"
+                      fullWidth
+                      value={values.balance}
                       onChange={handleChange}
-                      error={touched.userType && !!errors.userType}
-                    >
-                      {/* <MenuItem value="">Select User Type</MenuItem> */}
-                      <MenuItem value={"SuperAdmin"}>SuperAdmin</MenuItem>
-                      <MenuItem value={"Admin"}>Admin</MenuItem>
-                      <MenuItem value={"User"}>User</MenuItem>
-                    </Select>
+                      error={touched.balance && !!errors.balance}
+                    />
                     <ErrorMessage
-                      name="userType"
+                      name="balance"
                       component="p"
                       className="text-red-600"
                     />
@@ -206,34 +204,15 @@ const CreateFinances = ({ fetchFinances }) => {
                       onChange={handleChange}
                       error={touched.status && !!errors.status}
                     >
-                      <MenuItem value={"Active"}>Active</MenuItem>
-                      <MenuItem value={"Inactive"}>Inactive</MenuItem>
-                      <MenuItem value={"Suspended"}>Suspended</MenuItem>
+                      <MenuItem value={"cleared"}>Cleared</MenuItem>
+                      <MenuItem value={"pending"}>Pending</MenuItem>
+                      <MenuItem value={"declined"}>Declined</MenuItem>
                     </Select>
                     <ErrorMessage
                       name="status"
                       component="p"
                       className="text-red-600"
                     />
-                  </FormControl>
-
-                  <FormControl autoFocus fullWidth margin="dense">
-                    <TextField
-                      autoFocus
-                      margin="dense"
-                      id="img"
-                      name="img"
-                      type="file"
-                      fullWidth
-                      onChange={handleChange}
-                    />
-
-                    {/* error={touched.img && !!errors.img} */}
-                    {/* <ErrorMessage
-                      name="img"
-                      component="p"
-                      className="text-red-600"
-                    /> */}
                   </FormControl>
                 </div>
               </DialogContent>
