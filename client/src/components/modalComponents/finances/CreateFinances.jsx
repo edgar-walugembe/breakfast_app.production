@@ -40,11 +40,10 @@ const CreateFinances = ({ fetchFinances }) => {
 
   const schema = Yup.object().shape({
     name: Yup.string().required("Username is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    company: Yup.string().required("Company is required"),
-    userType: Yup.string().required("User Type is required"),
-    status: Yup.string().required("User Status is required"),
-    // img: Yup.string().required("User is required"),
+    currentDebt: Yup.number().integer().required("Current Debt is required"),
+    paidDebt: Yup.number().integer().required("Paid Debt is required"),
+    balance: Yup.number().integer().required("Balance Debt is required"),
+    status: Yup.string().required("Debt Status is required"),
   });
 
   return (
