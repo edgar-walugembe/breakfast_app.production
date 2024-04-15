@@ -41,8 +41,17 @@ import { IoFilterCircleOutline } from "react-icons/io5";
 
 import axios from "axios";
 import { useEffect } from "react";
+import { TbUserEdit } from "react-icons/tb";
 
-function createData(id, name, debtAmount, debtPaid, status, debtTotal) {
+function createData(
+  id,
+  name,
+  debtAmount,
+  debtPaid,
+  status,
+  debtTotal,
+  actions
+) {
   const orderStatus = (status) => {
     if (status === "cleared") {
       return {
@@ -78,6 +87,7 @@ function createData(id, name, debtAmount, debtPaid, status, debtTotal) {
     background: background,
     color: color,
     debtTotal,
+    actions,
   };
 }
 
@@ -91,19 +101,19 @@ const formattedDate = date.toLocaleDateString({
 });
 
 const rows = [
-  createData(1, "edgar", "banana", 1000, "cleared", formattedDate),
-  createData(2, "sam", "samosa", 2000, "pending", formattedDate),
-  createData(3, "allan", "chapati", 600, "declined", formattedDate),
-  createData(4, "denno", "sausage", 1500, "pending", formattedDate),
-  createData(5, "peter", "rolex", 700, "declined", formattedDate),
-  createData(6, "paul", "rolex", 1600, "cleared", formattedDate),
-  createData(7, "robert", "pancakes", 1000, "pending", formattedDate),
-  createData(8, "sharon", "pancakes", 1500, "cleared", formattedDate),
-  createData(9, "daniel", "banana", 2000, "cleared", formattedDate),
-  createData(10, "hope", "shortcakes", 1000, "cleared", formattedDate),
-  createData(11, "aaron", "cassava", 1000, "pending", formattedDate),
-  createData(12, "aariela", "eggs", 2000, "pending", formattedDate),
-  createData(13, "leticia", "cassava", 1000, "declined", formattedDate),
+  createData(1, "edgar", "banana", 1000, "cleared", 2000),
+  createData(2, "sam", "samosa", 2000, "pending", 2000),
+  createData(3, "allan", "chapati", 600, "declined", 2000),
+  createData(4, "denno", "sausage", 1500, "pending", 2000),
+  createData(5, "peter", "rolex", 700, "declined", 2000),
+  createData(6, "paul", "rolex", 1600, "cleared", 2000),
+  createData(7, "robert", "pancakes", 1000, "pending", 2000),
+  createData(8, "sharon", "pancakes", 1500, "cleared", 2000),
+  createData(9, "daniel", "banana", 2000, "cleared", 2000),
+  createData(10, "hope", "shortcakes", 1000, "cleared", 2000),
+  createData(11, "aaron", "cassava", 1000, "pending", 2000),
+  createData(12, "aariela", "eggs", 2000, "pending", 2000),
+  createData(13, "leticia", "cassava", 1000, "declined", 2000),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -139,19 +149,25 @@ const headCells = [
     id: "name",
     numeric: false,
     disablePadding: true,
-    label: "Debt Owner",
+    label: "DebtOwner",
   },
   {
     id: "debtAmount",
     numeric: true,
     disablePadding: false,
-    label: "Current Debt",
+    label: "CurrentDebt",
   },
   {
     id: "debtPaid",
     numeric: true,
     disablePadding: false,
-    label: "Debt Cleared",
+    label: "DebtCleared",
+  },
+  {
+    id: "debtTotal",
+    numeric: true,
+    disablePadding: false,
+    label: "BalanceDebt",
   },
   {
     id: "status",
@@ -160,10 +176,10 @@ const headCells = [
     label: "Status",
   },
   {
-    id: "debtTotal",
+    id: "actions",
     numeric: true,
     disablePadding: false,
-    label: "Balance Debt",
+    label: "Actions",
   },
 ];
 
@@ -182,7 +198,7 @@ function EnhancedTableHead(props) {
 
   return (
     <TableHead>
-      <TableRow className="bg-cyan">
+      <TableRow className="bg-yellow">
         <TableCell padding="checkbox">
           <Checkbox
             color="primary"
@@ -375,9 +391,38 @@ export default function EnhancedTable() {
     [order, orderBy, page, rowsPerPage]
   );
 
+  //context
+  const { setOpenCreateFinances, setOpenEditFinances } =
+    React.useContext(ModalContext);
+
+  const [selectedUserData, setSelectedUserData] = React.useState(null);
+  const handleRowClick = (userData) => {
+    setSelectedUserData(userData);
+  };
+
+  const handleOpen = () => {
+    // console.log("create User opened");
+    setOpenCreateFinances(true);
+  };
+
+  const handleClickEdit = (userData) => {
+    console.log("edit User opened");
+    setOpenEditFinances(true);
+    setSelectedUserData(userData);
+  };
+
   return (
-    <div className="surface-ground px-2 py-1 md:px-4 lg:px-6 ">
-      <div className="grid mt-2">
+    <div className="surface-ground px-0 py-1 md:px-4 lg:px-6 ">
+      <div className="flex flex-col">
+        <div className="flex justify-end items-end p-0 gap-10">
+          <div
+            className={`rounded button-yellow mb-1 text-[14px] text-center py-2 col-12`}
+            onClick={handleOpen}
+          >
+            <span className="text-black w-full">Add New Record</span>
+          </div>
+        </div>
+
         <Box sx={{ width: "100%" }} c="true">
           <Paper sx={{ width: "100%", mb: 2 }}>
             <EnhancedTableToolbar numSelected={selected.length} />
@@ -432,19 +477,15 @@ export default function EnhancedTable() {
                         </TableCell>
                         <TableCell align="center">{row.debtAmount}</TableCell>
                         <TableCell align="center">{row.debtPaid}</TableCell>
-                        <TableCell align="center" className="relative">
-                          {" "}
-                          <span>
-                            <span
-                              style={{
-                                backgroundColor: row.background,
-                              }}
-                              className="status"
-                            ></span>
-                            {row.status}
-                          </span>
-                        </TableCell>
                         <TableCell align="center">{row.debtTotal}</TableCell>
+                        <TableCell align="center" className="relative">
+                          {row.status}
+                        </TableCell>
+                        <TableCell align="center">
+                          <IconButton size="xs" onClick={handleClickEdit}>
+                            <TbUserEdit size={20} color="black" />
+                          </IconButton>
+                        </TableCell>
                       </TableRow>
                     );
                   })}

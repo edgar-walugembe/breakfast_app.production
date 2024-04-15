@@ -64,17 +64,19 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [pdtData, setPdtData] = useState([]);
   const [userData, setUserData] = useState([]);
+  const [financeData, setFinanceData] = useState([]);
 
   useEffect(() => {
     fetchData();
     fetchProductData();
+    fetchFinanceData();
   }, []);
 
   const fetchData = async () => {
     try {
       const res = await axios.get(getUserUrl);
 
-      setData(res.data.users);
+      setUserData(res.data.users);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -89,6 +91,14 @@ const Home = () => {
         img: product.img ? `${baseUrl}/images/${product.img}` : null, // Assuming the backend serves images at /api route
       }));
       setPdtData(productsWithDataAndImages);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const fetchFinanceData = async () => {
+    try {
+      const res = await axios.get();
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -116,39 +126,32 @@ const Home = () => {
             setOpenCreateUser,
             setOpenDeleteUser,
             setOpenEditUser,
+            finances,
+            setFinances,
+            openCreateFinances,
+            openDeleteFinances,
+            openEditFinances,
+            setOpenCreateFinances,
+            setOpenDeleteFinances,
+            setOpenEditFinances,
             data,
             setData,
             pdtData,
             setPdtData,
             userData,
             setUserData,
+            financeData,
+            setFinanceData,
             validated,
             setValidated,
             editUser,
             setEditUser,
             editPdt,
             setEditPdt,
+            editFinances,
+            setEditFinances,
           }}
         >
-          {/* <Sidebar>
-            <SidebarItem
-              icon={<LayoutDashboard size={20} />}
-              text="Dashboard"
-              alert
-            />
-            <SidebarItem
-              icon={<BarChart size={20} />}
-              text="Statistics"
-              active
-            />
-            <SidebarItem icon={<UserCircle size={20} />} text="Users" />
-            <SidebarItem icon={<Boxes size={20} />} text="Inventory" />
-            <SidebarItem icon={<Package size={20} />} text="Orders" alert />
-            <SidebarItem icon={<Receipt size={20} />} text="Billings" />
-            <hr className="my-3" />
-            <SidebarItem icon={<Settings size={20} />} text="Settings" />
-            <SidebarItem icon={<LifeBuoy size={20} />} text="Help" />
-          </Sidebar> */}
           <Menu />
           <div className={`w-full ml-[250px]`}>
             <Navbar />
