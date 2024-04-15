@@ -88,12 +88,12 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  {
-    id: "id",
-    numeric: false,
-    disablePadding: true,
-    label: "UserId",
-  },
+  // {
+  //   id: "id",
+  //   numeric: false,
+  //   disablePadding: true,
+  //   label: "UserId",
+  // },
   {
     id: "name",
     numeric: true,
@@ -384,7 +384,7 @@ export default function EnhancedTable({ onSelectUser }) {
   };
 
   return (
-    <div className="surface-ground px-0 py-1 md:px-4 lg:px-6 ">
+    <div className="surface-ground px-0 py-1 md:px-4 lg:px-6">
       <div className="flex flex-col">
         <div className="flex justify-end items-end p-0 gap-10">
           <div
@@ -441,7 +441,7 @@ export default function EnhancedTable({ onSelectUser }) {
                             name="label"
                           />
                         </TableCell>
-                        <TableCell
+                        {/* <TableCell
                           component="th"
                           id={labelId}
                           scope="row"
@@ -449,7 +449,7 @@ export default function EnhancedTable({ onSelectUser }) {
                           align="center"
                         >
                           {row.userId}
-                        </TableCell>
+                        </TableCell> */}
                         <TableCell align="center">{row.name}</TableCell>
                         <TableCell align="center">{row.email}</TableCell>
                         <TableCell align="center">{row.company}</TableCell>

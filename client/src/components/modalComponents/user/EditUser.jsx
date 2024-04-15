@@ -123,7 +123,7 @@ function EditUser({ selectedUserData, fetchData }) {
         <Formik
           initialValues={{
             name: selectedUserData?.name || "",
-            email: selectedUserData?.email || "",
+            email: selectedUserData?.email || ``,
             company: selectedUserData?.company || "",
             userType: selectedUserData?.userType || "",
             status: selectedUserData?.status || "",

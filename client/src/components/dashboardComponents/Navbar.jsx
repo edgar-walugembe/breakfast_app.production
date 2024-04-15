@@ -66,7 +66,7 @@ const Navbar = ({ fetchProductData, fetchData }) => {
   }, [token, userName, userRole, userId]);
 
   return (
-    <div className="surface-ground px-2 py-2 md:px-4 lg:px-6">
+    <div className="surface-ground px-0 py-2 md:px-4 lg:px-6">
       <div className="grid">
         <div className="flex justify-between col-12">
           <div className="flex flex-col text-black">

@@ -92,7 +92,7 @@ const CreateUser = ({ fetchData }) => {
         <Formik
           initialValues={{
             name: "",
-            email: "",
+            email: ``,
             company: "",
             userType: "",
             status: "",
