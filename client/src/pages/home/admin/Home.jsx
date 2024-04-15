@@ -47,11 +47,11 @@ const Home = () => {
   });
 
   //finances State
-  const [finances, setFinances] = useState([]);
-  const [openCreateFinances, setOpenCreateFinances] = useState(false);
-  const [openDeleteFinances, setOpenDeleteFinances] = useState(false);
-  const [openEditFinances, setOpenEditFinances] = useState(false);
-  const [editFinances, setEditFinances] = useState({
+  const [record, setRecord] = useState([]);
+  const [openCreateRecord, setOpenCreateRecord] = useState(false);
+  const [openDeleteRecord, setOpenDeleteRecord] = useState(false);
+  const [openEditRecord, setOpenEditRecord] = useState(false);
+  const [editRecord, setEditRecord] = useState({
     name: "",
     email: "",
     company: "",
@@ -126,14 +126,14 @@ const Home = () => {
             setOpenCreateUser,
             setOpenDeleteUser,
             setOpenEditUser,
-            finances,
-            setFinances,
-            openCreateFinances,
-            openDeleteFinances,
-            openEditFinances,
-            setOpenCreateFinances,
-            setOpenDeleteFinances,
-            setOpenEditFinances,
+            record,
+            setRecord,
+            openCreateRecord,
+            openDeleteRecord,
+            openEditRecord,
+            setOpenCreateRecord,
+            setOpenDeleteRecord,
+            setOpenEditRecord,
             data,
             setData,
             pdtData,
@@ -148,8 +148,8 @@ const Home = () => {
             setEditUser,
             editPdt,
             setEditPdt,
-            editFinances,
-            setEditFinances,
+            editRecord,
+            setEditRecord,
           }}
         >
           <Menu />

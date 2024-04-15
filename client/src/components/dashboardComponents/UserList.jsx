@@ -207,7 +207,7 @@ function EnhancedTableToolbar(props) {
   //context
   const { setOpenDeleteUser } = useContext(ModalContext);
 
-  const handleClickDelete = ({ selected }) => {
+  const handleDelete = ({ selected }) => {
     setOpenDeleteUser(true);
   };
 
@@ -247,7 +247,7 @@ function EnhancedTableToolbar(props) {
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton onClick={handleClickDelete}>
+          <IconButton onClick={handleDelete}>
             {/* <DeleteIcon /> */}
             <TiUserDelete size={24} color="black" />
           </IconButton>
@@ -372,12 +372,12 @@ export default function EnhancedTable({ onSelectUser }) {
     setSelectedUserData(userData);
   };
 
-  const handleClickCreate = () => {
+  const handleCreate = () => {
     console.log("create User opened");
     setOpenCreateUser(true);
   };
 
-  const handleClickEdit = (userData) => {
+  const handleEdit = (userData) => {
     console.log("edit User opened");
     setOpenEditUser(true);
     setSelectedUserData(userData);
@@ -389,7 +389,7 @@ export default function EnhancedTable({ onSelectUser }) {
         <div className="flex justify-end items-end p-0 gap-10">
           <div
             className={`rounded button-yellow mb-1 text-[14px] text-center py-2 col-12`}
-            onClick={handleClickCreate}
+            onClick={handleCreate}
           >
             <span className="text-black w-full">Add New User</span>
           </div>
@@ -463,7 +463,7 @@ export default function EnhancedTable({ onSelectUser }) {
                             // style={{ background: "yellow", color: "black" }}
                             // variant="outlined"
                             size="xs"
-                            onClick={handleClickEdit}
+                            onClick={handleEdit}
                           >
                             <TbUserEdit size={20} color="black" />
                           </IconButton>

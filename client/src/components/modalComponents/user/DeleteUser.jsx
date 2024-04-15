@@ -6,7 +6,6 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material";
-
 import Button from "@mui/material/Button";
 
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -62,33 +61,7 @@ function DeleteUser({ selectedUserData, fetchData }) {
 
     fetchData();
     handleCloseDelete();
-
-    // if (selectedUserData.length > 0) {
-    //   try {
-    //     const userIds = selectedUserData.map((user) => user.userId);
-    //     await Promise.all(
-    //       userIds.map(async (userId) => {
-    //         const res = await axios.delete(`${deleteUserUrl}?userId=${userId}`);
-    //         if (res.status === 202) {
-    //           setUser((prevUser) =>
-    //             prevUser.filter((user) => user.userId !== userId)
-    //           );
-    //         } else {
-    //           console.error(
-    //             `Failed to delete user with id ${userId} from express_db:`,
-    //             res.data.message
-    //           );
-    //         }
-    //       })
-    //     );
-    //     fetchData();
-    //     handleCloseDelete();
-    //   } catch (error) {
-    //     console.error("Error deleting user(s) from express_db:", error);
-    //   }
-    // }
   };
-
   return (
     <div>
       <Dialog open={openDeleteUser} style={{ zIndex: 9999 }}>

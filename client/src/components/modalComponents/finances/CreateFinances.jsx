@@ -29,11 +29,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const CreateFinances = ({ fetchFinances }) => {
-  const { openCreateFinances, setOpenCreateFinances, validated, setValidated } =
+  const { openCreateRecord, setOpenCreateRecord, validated, setValidated } =
     useContext(ModalContext);
 
   const handleClose = () => {
-    setOpenCreateFinances(false);
+    setOpenCreateRecord(false);
   };
 
   CreateFinances.propTypes = {
@@ -71,7 +71,7 @@ const CreateFinances = ({ fetchFinances }) => {
 
   return (
     <div>
-      <Dialog open={openCreateFinances} style={{ zIndex: 0 }}>
+      <Dialog open={openCreateRecord} style={{ zIndex: 0 }}>
         <Formik
           initialValues={{
             name: "",

@@ -42,6 +42,7 @@ import { IoFilterCircleOutline } from "react-icons/io5";
 import axios from "axios";
 import { useEffect } from "react";
 import { TbUserEdit } from "react-icons/tb";
+import { useContext } from "react";
 
 function createData(
   id,
@@ -257,6 +258,13 @@ EnhancedTableHead.propTypes = {
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
 
+  //context
+  const { setOpenDeleteRecord } = useContext(ModalContext);
+
+  const handleDelete = ({ selected }) => {
+    setOpenDeleteRecord(true);
+  };
+
   return (
     <Toolbar
       sx={{
@@ -293,7 +301,7 @@ function EnhancedTableToolbar(props) {
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton>
+          <IconButton onClick={handleDelete}>
             {/* <DeleteIcon /> */}
             <MdOutlineDeleteSweep size={24} color="black" />
           </IconButton>
@@ -400,23 +408,23 @@ export default function EnhancedTable() {
   );
 
   //context
-  const { setOpenCreateFinances, setOpenEditFinances } =
+  const { setOpenCreateRecord, setOpenEditRecord } =
     React.useContext(ModalContext);
 
-  const [selectedUserData, setSelectedUserData] = React.useState(null);
+  const [selectedRecordData, setSelectedRecordData] = React.useState(null);
   const handleRowClick = (userData) => {
-    setSelectedUserData(userData);
+    selectedRecordData(userData);
   };
 
   const handleOpen = () => {
     // console.log("create User opened");
-    setOpenCreateFinances(true);
+    setOpenCreateRecord(true);
   };
 
   const handleClickEdit = (userData) => {
     console.log("edit User opened");
-    setOpenEditFinances(true);
-    setSelectedUserData(userData);
+    setOpenEditRecord(true);
+    selectedRecordData(userData);
   };
 
   return (
@@ -540,10 +548,10 @@ export default function EnhancedTable() {
         <CreateFinances fetchData={fetchFinances} />
         <DeleteFinances
           fetchData={fetchFinances}
-          // selectedUserData={selectedUserData}
+          selectedRecordData={selectedRecordData}
         />
         <EditFinances
-          // selectedUserData={selectedUserData}
+          selectedRecordData={selectedRecordData}
           fetchData={fetchFinances}
         />
       </div>
