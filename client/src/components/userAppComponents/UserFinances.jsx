@@ -30,6 +30,7 @@ import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
+import { useEffect } from "react";
 
 function createData(id, name, calories, fat, carbs, protein) {
   return {
@@ -250,6 +251,20 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  useEffect(() => {
+    fetchFinances();
+  }, []);
+
+  const fetchFinances = async () => {
+    try {
+      // const res = await axios.get(getUserUrl);
+      // console.log(res.data.users);
+      // setData(res.data.users);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";

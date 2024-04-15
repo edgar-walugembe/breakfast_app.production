@@ -25,9 +25,22 @@ import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
+
+//context imports
+import { ModalContext } from "../../contexts/ModalContext";
+import {
+  CreateFinances,
+  DeleteFinances,
+  EditFinances,
+} from "../modalComponents";
+
+//icon imports
 import { MdOutlineDeleteSweep } from "react-icons/md";
 import { BsFilterRight } from "react-icons/bs";
 import { IoFilterCircleOutline } from "react-icons/io5";
+
+import axios from "axios";
+import { useEffect } from "react";
 
 function createData(id, name, debtAmount, debtPaid, status, debtTotal) {
   const orderStatus = (status) => {
@@ -286,6 +299,20 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+  useEffect(() => {
+    fetchFinances();
+  }, []);
+
+  const fetchFinances = async () => {
+    try {
+      // const res = await axios.get(getUserUrl);
+      // console.log(res.data.users);
+      // setData(res.data.users);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -448,6 +475,16 @@ export default function EnhancedTable() {
             label="Dense padding"
           />
         </Box>
+
+        <CreateFinances fetchData={fetchFinances} />
+        <DeleteFinances
+          fetchData={fetchFinances}
+          // selectedUserData={selectedUserData}
+        />
+        <EditFinances
+          // selectedUserData={selectedUserData}
+          fetchData={fetchFinances}
+        />
       </div>
     </div>
   );
