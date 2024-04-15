@@ -36,8 +36,8 @@ const DeleteFinances = ({ fetchFinances, selectedUserData }) => {
 
     try {
       if (res.status === 202) {
-        setRecord((prevUser) =>
-          prevUser.filter((user) => record.recordId !== recordId)
+        setRecord((prevRecord) =>
+          prevRecord.filter((record) => record.recordId !== recordId)
         );
       } else {
         console.error(
@@ -77,7 +77,7 @@ const DeleteFinances = ({ fetchFinances, selectedUserData }) => {
         </DialogTitle>
         <DialogContent>
           <div className="flex gap-4">
-            <p>Are you sure you want to delete this record ?</p>
+            <p>Are you sure you want to delete this financial record ?</p>
           </div>
         </DialogContent>
         <DialogActions>
