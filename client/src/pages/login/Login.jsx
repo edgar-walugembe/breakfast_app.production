@@ -162,11 +162,13 @@ const Login = () => {
 
                   <div className="flex gap-2 justify-center">
                     <button type="submit" className={`rounded loginSpan`}>
-                      <div className="flex justify-evenly w-full p-2">
-                        <span className="text-black font-semibold text-[14px]">
-                          Log In
-                        </span>
-                      </div>
+                      <Link to="/User/home">
+                        <div className="flex justify-evenly w-full p-2">
+                          <span className="text-black font-semibold text-[14px]">
+                            Log In
+                          </span>
+                        </div>
+                      </Link>
                     </button>
                   </div>
                 </Form>

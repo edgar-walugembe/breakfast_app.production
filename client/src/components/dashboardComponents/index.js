@@ -2,7 +2,7 @@ import AddProduct from "./AddProduct";
 import AddUser from "./AddUser";
 import EditProduct from "./EditProduct";
 import EditUser from "./EditUser";
-import Finances from "./Finances";
+import Finance from "./Finance.jsx";
 import Menu from "./Menu";
 import Navbar from "./Navbar";
 import Orders from "./Header.jsx";
@@ -18,7 +18,7 @@ export {
   AddUser,
   EditProduct,
   EditUser,
-  Finances,
+  Finance,
   Menu,
   Navbar,
   Notification,

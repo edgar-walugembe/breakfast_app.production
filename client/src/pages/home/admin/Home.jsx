@@ -45,6 +45,21 @@ const Home = () => {
     status: "",
     img: "",
   });
+
+  //finances State
+  const [finances, setFinances] = useState([]);
+  const [openCreateFinances, setOpenCreateFinances] = useState(false);
+  const [openDeleteFinances, setOpenDeleteFinances] = useState(false);
+  const [openEditFinances, setOpenEditFinances] = useState(false);
+  const [editFinances, setEditFinances] = useState({
+    name: "",
+    email: "",
+    company: "",
+    userType: "",
+    status: "",
+    img: "",
+  });
+
   const [validated, setValidated] = useState(false);
   const [data, setData] = useState([]);
   const [pdtData, setPdtData] = useState([]);
