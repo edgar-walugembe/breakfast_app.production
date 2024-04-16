@@ -19,6 +19,14 @@ const { authenticateUser, retrieveToken } = require("./loginToken");
 
 const app = express();
 
+// cors production server
+app.use(
+  cors({
+    origin: "https://breakfast-app-chi.vercel.app/",
+    credentials: true,
+  })
+);
+
 app.use(
   "/",
   createProxyMiddleware({
@@ -27,20 +35,10 @@ app.use(
   })
 );
 
-app.use(function (req, res, next) {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://breakfast-app-chi.vercel.app"
-  );
-  next();
-});
-
-// cors
-// app.use(cors());
+// cors development server
 // app.use(
 //   cors({
-//     // origin: "http://localhost:5173",
-//     origin: "https://breakfast-app-chi.vercel.app/",
+//     origin: "http://localhost:5173",
 //     credentials: true,
 //   })
 // );
