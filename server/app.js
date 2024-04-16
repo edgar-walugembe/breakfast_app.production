@@ -17,13 +17,15 @@ const { authenticateUser, retrieveToken } = require("./loginToken");
 
 const app = express();
 
-app.use(
-  cors({
-    // origin: "http://localhost:5173",
-    origin: "https://breakfast-app-chi.vercel.app/",
-    credentials: true,
-  })
-);
+// cors
+app.use(cors());
+// app.use(
+//   cors({
+//     // origin: "http://localhost:5173",
+//     origin: "https://breakfast-app-chi.vercel.app/",
+//     credentials: true,
+//   })
+// );
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
