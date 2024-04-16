@@ -16,10 +16,10 @@ module.exports = {
     dialect: "mysql",
   },
   production: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: "breakApp_production.db",
-    host: "localhost",
+    username: process.env.DB_USER_PRODUCTION,
+    password: process.env.DB_PASSWORD_PRODUCTION,
+    database: process.env.DB_NAME_PRODUCTION,
+    host: process.env.DB_HOST_PRODUCTION,
     dialect: "mysql",
   },
 };
