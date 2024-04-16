@@ -22,7 +22,7 @@ const app = express();
 // cors production server
 app.use(
   cors({
-    origin: "https://breakfast-app-chi.vercel.app/",
+    origin: "https://breakfast-app-chi.vercel.app",
     credentials: true,
   })
 );
