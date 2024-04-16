@@ -30,7 +30,7 @@ app.use(
 app.use(
   "/",
   createProxyMiddleware({
-    target: "https://breakfast-app-server.onrender.com/",
+    target: "https://breakfast-app-server.onrender.com",
     changeOrigin: true,
   })
 );
