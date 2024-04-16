@@ -32,6 +32,14 @@ app.use(
   createProxyMiddleware({
     target: "https://breakfast-app-server.onrender.com",
     changeOrigin: true,
+    onProxyRes: function (proxyRes, req, res) {
+      // Set CORS headers on the proxy response
+      res.setHeader(
+        "Access-Control-Allow-Origin",
+        "https://breakfast-app-chi.vercel.app"
+      );
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+    },
   })
 );
 
