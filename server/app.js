@@ -6,6 +6,8 @@ const logger = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
 
+const { createProxyMiddleware } = require("http-proxy-middleware");
+
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
 const productRouter = require("./routes/product");
@@ -17,15 +19,23 @@ const { authenticateUser, retrieveToken } = require("./loginToken");
 
 const app = express();
 
+app.use(
+  "/",
+  createProxyMiddleware({
+    target: "https://breakfast-app-server.onrender.com/",
+    changeOrigin: true,
+  })
+);
+
 // cors
-app.use(cors());
-// app.use(
-//   cors({
-//     // origin: "http://localhost:5173",
-//     origin: "https://breakfast-app-chi.vercel.app/",
-//     credentials: true,
-//   })
-// );
+// app.use(cors());
+app.use(
+  cors({
+    // origin: "http://localhost:5173",
+    origin: "https://breakfast-app-chi.vercel.app/",
+    credentials: true,
+  })
+);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
