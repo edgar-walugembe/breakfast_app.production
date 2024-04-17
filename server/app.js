@@ -28,10 +28,13 @@ app.use(
 );
 
 app.use(
-  "/",
+  "/api",
   createProxyMiddleware({
     target: "https://breakfast-app-server.onrender.com",
     changeOrigin: true,
+    pathRewrite: {
+      "^/api": "/", // Rewrite paths to remove "/api" prefix before proxying
+    },
     onProxyRes: function (proxyRes, req, res) {
       proxyRes.headers["access-control-allow-origin"] =
         "https://breakfast-app-chi.vercel.app";
