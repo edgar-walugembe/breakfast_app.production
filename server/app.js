@@ -20,33 +20,33 @@ const { authenticateUser, retrieveToken } = require("./loginToken");
 const app = express();
 
 // cors production server
-app.use(
-  cors({
-    origin: "https://breakfast-app-chi.vercel.app",
-    credentials: true,
-  })
-);
-
-app.use(
-  "/",
-  createProxyMiddleware({
-    target: "https://breakfast-app-server.onrender.com",
-    changeOrigin: true,
-    onProxyRes: function (proxyRes, req, res) {
-      proxyRes.headers["access-control-allow-origin"] =
-        "https://breakfast-app-chi.vercel.app";
-      proxyRes.headers["access-control-allow-credentials"] = "true";
-    },
-  })
-);
-
-// cors development server
 // app.use(
 //   cors({
-//     origin: "http://localhost:5173",
+//     origin: "https://breakfast-app-chi.vercel.app",
 //     credentials: true,
 //   })
 // );
+
+// app.use(
+//   "/",
+//   createProxyMiddleware({
+//     target: "https://breakfast-app-server.onrender.com",
+//     changeOrigin: true,
+//     onProxyRes: function (proxyRes, req, res) {
+//       proxyRes.headers["access-control-allow-origin"] =
+//         "https://breakfast-app-chi.vercel.app";
+//       proxyRes.headers["access-control-allow-credentials"] = "true";
+//     },
+//   })
+// );
+
+// cors development server
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -62,11 +62,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.post("/", authenticateToken, loginUser);
 
 // token route
-// app.get("/", retrieveToken, authenticateUser, (req, res) => {
-//   const user = req.user;
-//   res.json({ message: "Authenticated user", user: user });
-//   console.log(user);
-// });
+app.get("/", retrieveToken, authenticateUser, (req, res) => {
+  const user = req.user;
+  res.json({ message: "Authenticated user", user: user });
+  console.log(user);
+});
 
 // user routes
 app.use("/User/home", userRouter);

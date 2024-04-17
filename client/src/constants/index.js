@@ -73,20 +73,20 @@ export const cards = [
 ];
 
 //login url
-// export const baseUrl = "http://localhost:8000";
-export const baseUrl = "https://breakfast-app-server.onrender.com";
+export const baseUrl = "http://localhost:8000";
+// export const baseUrl = "https://breakfast-app-server.onrender.com";
 
 //password urls
-// export const passwordUrl = "http://localhost:8000/Password";
-export const passwordUrl = "https://breakfast-app-server.onrender.com/Password";
+export const passwordUrl = "http://localhost:8000/Password";
+// export const passwordUrl = "https://breakfast-app-server.onrender.com/Password";
 export const setPasswordUrl = `${passwordUrl}/set_password`;
 export const resetPasswordUrl = `${passwordUrl}/reset_password`;
 export const changePasswordUrl = `${passwordUrl}/change_password`;
 
 //user urls
-// export const UserUrl = "http://localhost:8000/Admin/Dashboard/Users";
-export const UserUrl =
-  "https://breakfast-app-server.onrender.com/Admin/Dashboard/Users";
+export const UserUrl = "http://localhost:8000/Admin/Dashboard/Users";
+// export const UserUrl =
+//   "https://breakfast-app-server.onrender.com/Admin/Dashboard/Users";
 export const getUserUrl = `${UserUrl}/all`;
 export const createUserUrl = `${UserUrl}/createUser`;
 export const editUserUrl = `${UserUrl}/editUser`;
@@ -94,20 +94,21 @@ export const deleteUserUrl = `${UserUrl}/deleteUser`;
 
 //product urls
 /*admin*/
-// export const PdtUrl_admin = "http://localhost:8000/Admin/Dashboard/Products";
-export const PdtUrl_admin =
-  "https://breakfast-app-server.onrender.com/Admin/Dashboard/Products";
+export const PdtUrl_admin = "http://localhost:8000/Admin/Dashboard/Products";
+// export const PdtUrl_admin =
+//   "https://breakfast-app-server.onrender.com/Admin/Dashboard/Products";
 export const getPdtUrl_admin = `${PdtUrl_admin}/all`;
 export const createPdtUrl_admin = `${PdtUrl_admin}/createPdt`;
 export const editPdtUrl_admin = `${PdtUrl_admin}/editPdt`;
 export const deletePdtUrl_admin = `${PdtUrl_admin}/deletePdt`;
+
 /*user*/
-// export const PdtUrl_user = "http://localhost:8000/User/home/Products";
-export const PdtUrl_user =
-  "https://breakfast-app-server.onrender.com/User/home/Products";
+export const PdtUrl_user = "http://localhost:8000/User/home/Products";
+// export const PdtUrl_user =
+//   "https://breakfast-app-server.onrender.com/User/home/Products";
 export const getPdtUrl_user = `${PdtUrl_user}/all`;
 
 //order urls
-// export const OrderUrl = "http://localhost:8000/Admin/Dashboard/Orders";
-export const OrderUrl =
-  "https://breakfast-app-server.onrender.com/Admin/Dashboard/Orders";
+export const OrderUrl = "http://localhost:8000/Admin/Dashboard/Orders";
+// export const OrderUrl =
+//   "https://breakfast-app-server.onrender.com/Admin/Dashboard/Orders";
