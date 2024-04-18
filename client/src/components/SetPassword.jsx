@@ -46,7 +46,6 @@ const SetPassword = () => {
         password: firstPassword,
       };
 
-      //FIXME: this is supposed to route through password
       try {
         const res = await axios.post(setPasswordUrl, user);
         console.log(res);

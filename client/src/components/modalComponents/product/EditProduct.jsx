@@ -38,6 +38,8 @@ function EditProduct({ selectedPdtData, fetchData }) {
   const [editAdminId, setEditAdminId] = useState("");
   const [editImg, setEditImg] = useState("");
 
+  const [selectedFile, setSelectedFile] = useState(null);
+
   EditProduct.propTypes = {
     selectedPdtData: PropTypes.object,
     fetchData: PropTypes.func,
@@ -70,8 +72,23 @@ function EditProduct({ selectedPdtData, fetchData }) {
     setOpenEditPdt(false);
   };
 
-  const handleSubmit = () => {
-    handleClose();
+  //TODO: Handle edit product to completion today.
+  const handleSubmit = async (values) => {
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("unitPrice", values.unitPrice);
+    formData.append("img", selectedFile);
+
+    try {
+      // Make an HTTP request to update the product with the FormData
+      const response = await axios.put(editPdtUrl_admin, formData);
+      console.log("Product updated successfully:", response.data);
+      // Close the dialog or perform any other actions upon successful submission
+      handleClose();
+    } catch (error) {
+      console.error("Error updating product:", error);
+      // Handle error appropriately, e.g., display error message
+    }
   };
 
   return (
@@ -138,7 +155,8 @@ function EditProduct({ selectedPdtData, fetchData }) {
                     type="file"
                     fullWidth
                     value={values.img}
-                    onChange={handleChange}
+                    // onChange={handleChange}
+                    onChange={(event) => setSelectedFile(event.target.files[0])}
                   />
                 </div>
               </DialogContent>
