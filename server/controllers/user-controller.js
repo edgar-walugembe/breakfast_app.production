@@ -18,7 +18,7 @@ async function sendEmail(to, subject, body) {
     from: process.env.EMAIL,
     to: to,
     subject: subject,
-    text: body,
+    html: body,
   };
 
   await transporter.sendMail(mailOptions);
@@ -32,18 +32,13 @@ async function createUser(req, res) {
       user.email,
       `Hello, ${user.name}. Set Your Password`,
       `
-      Dear <strong>${user.name}</strong>,
-
-      Welcome to our platform! We're thrilled to have you on board.
-
-      Your username: <strong>${user.name}</strong>
-
-      To get started, please set your password by clicking on the following link:
-
-      ${process.env.CLIENT_URL}
-
-      Thank you for joining us!,
-      BREAKFAST ORDER APP.
+      <p>Dear <strong>${user.name}</strong>,</p>
+      <p>Welcome to our platform! We're thrilled to have you on board.</p>
+      <p>Your username: <strong>${user.name}</strong></p>
+      <p>To get started, please set your password by clicking on the following link:</p>
+      <p><strong><a href="${process.env.CLIENT_URL}">${process.env.CLIENT_URL}</a></strong></p>
+      <p>Thank you for joining us!,</p>
+      <p><strong>BREAKFAST ORDER APP.</strong></p>
       `
     );
 
