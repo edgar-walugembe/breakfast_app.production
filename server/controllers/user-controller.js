@@ -38,7 +38,7 @@ async function createUser(req, res) {
       <p>Welcome to our platform! We're thrilled to have you on board.</p>
       <p>Your username: <strong>${user.name}</strong></p>
       <p>To get started, please set your password by clicking on the following link:</p>
-      <p><strong><a href="${process.env.CLIENT_URL}">${process.env.CLIENT_URL}</a></strong></p>
+      <p><><a href="${process.env.CLIENT_URL}">${process.env.CLIENT_URL}</a></p>
       <p>Thank you for joining us!,</p>
       <p><strong>BREAKFAST ORDER APP.</strong></p>
       `
