@@ -56,7 +56,10 @@ app.post("/", authenticateToken, loginUser);
 
 // server route
 app.get("/", (req, res) => {
-  res.json({ message: "Server running successfully" });
+  res.render("index", {
+    heading: "Breakfast Server",
+    title: "Server running successfully",
+  });
 });
 
 // user routes
