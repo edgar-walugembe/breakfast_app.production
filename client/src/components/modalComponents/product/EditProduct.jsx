@@ -82,6 +82,7 @@ function EditProduct({ selectedPdtData, fetchProductData }) {
       // Create FormData object from the form
       const formData = new FormData(form);
       formData.append("productId", productId);
+      // formData.append("img", img);
 
       const res = await axios.patch(
         `${editPdtUrl_admin}?productId=${productId}`,
@@ -170,7 +171,7 @@ function EditProduct({ selectedPdtData, fetchProductData }) {
                       label="Product Name"
                       type="text"
                       fullWidth
-                      value={values.name}
+                      value={editName}
                       onChange={(e) => {
                         handleChange(e);
                         setEditName(e.target.value);
@@ -192,7 +193,7 @@ function EditProduct({ selectedPdtData, fetchProductData }) {
                       label="Unit Price"
                       type="text"
                       fullWidth
-                      value={values.unitPrice}
+                      value={editUnitPrice}
                       onChange={(e) => {
                         handleChange(e);
                         setEditUnitPrice(e.target.value);
@@ -209,25 +210,6 @@ function EditProduct({ selectedPdtData, fetchProductData }) {
 
                 <div>
                   <FormControl>
-                    <Button
-                      component="label"
-                      role={undefined}
-                      variant="contained"
-                      tabIndex={-1}
-                      startIcon={<CloudUploadIcon />}
-                    >
-                      Upload file
-                      <VisuallyHiddenInput
-                        id="img"
-                        name=""
-                        type="file"
-                        onChange={(e) => {
-                          handleChange(e); // Handle formik change
-                          setEditImg(e.target.files[0]); // Set the file object
-                        }}
-                      />
-                    </Button>
-
                     {/* <TextField
                       autoFocus
                       margin="dense"
@@ -242,16 +224,16 @@ function EditProduct({ selectedPdtData, fetchProductData }) {
                       }}
                       error={touched.img && !!errors.img}
                     /> */}
-                    {/* <input
+                    <input
                       autoFocus
                       id="img"
                       type="file"
                       onChange={(e) => {
                         handleChange(e);
-                        setEditImg(e.target.value);
+                        setEditImg(e.target.files[0]);
                       }}
                       className="w-full py-2 px-3 rounded-md border-gray-300 focus:outline-none focus:ring focus:ring-blue-200"
-                    /> */}
+                    />
 
                     <ErrorMessage
                       name="img"
