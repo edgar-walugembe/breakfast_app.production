@@ -30,9 +30,21 @@ async function createUser(req, res) {
 
     await sendEmail(
       user.email,
-      "Hello, " + user.name,
-      `Please set your password by clicking on the following link: 
-      https://breakfast-app-chi.vercel.app/`
+      `Hello, ${user.name}. Set Your Password`,
+      `
+      Dear <strong>${user.name}</strong>,
+
+      Welcome to our platform! We're thrilled to have you on board.
+
+      Your username: <strong>${user.name}</strong>
+
+      To get started, please set your password by clicking on the following link:
+
+      ${process.env.CLIENT_URL}
+
+      Thank you for joining us!,
+      BREAKFAST ORDER APP.
+      `
     );
 
     return res.status(201).send({ user });
