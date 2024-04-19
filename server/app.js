@@ -15,7 +15,6 @@ const orderRouter = require("./routes/order");
 const passwordRouter = require("./routes/password");
 
 const { loginUser, authenticateToken } = require("./authUser");
-const { authenticateUser, retrieveToken } = require("./loginToken");
 
 const app = express();
 
@@ -55,7 +54,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // login route
 app.post("/", authenticateToken, loginUser);
 
-// token route
+// server route
 app.get("/", (req, res) => {
   res.json({ message: "Server running successfully" });
 });
