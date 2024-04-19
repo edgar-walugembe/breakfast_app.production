@@ -26,11 +26,13 @@ async function sendEmail(to, subject, body) {
 
 async function createUser(req, res) {
   try {
-    const user = await User.create(req.body);
+    const username = `${req.body.name}.${req.body.company}`;
+
+    const user = await User.create({ ...req.body, name: username });
 
     await sendEmail(
       user.email,
-      `Hello, ${user.name}. Set Your Password`,
+      `Hello, ${user.name},`,
       `
       <p>Dear <strong>${user.name}</strong>,</p>
       <p>Welcome to our platform! We're thrilled to have you on board.</p>
