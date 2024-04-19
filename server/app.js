@@ -56,10 +56,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.post("/", authenticateToken, loginUser);
 
 // token route
-app.get("/", retrieveToken, authenticateUser, (req, res) => {
-  const user = req.user;
-  res.json({ message: "Authenticated user", user: user });
-  console.log(user);
+app.get("/", (req, res) => {
+  res.json({ message: "Server running successfully" });
 });
 
 // user routes
