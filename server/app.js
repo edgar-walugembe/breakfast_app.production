@@ -22,7 +22,7 @@ const app = express();
 // cors production server
 app.use(
   cors({
-    origin: "https://breakfast-app-chi.vercel.app",
+    origin: process.env.CLIENT_URL,
     credentials: true,
   })
 );
@@ -30,26 +30,17 @@ app.use(
 app.use(
   "/api",
   createProxyMiddleware({
-    target: "https://breakfast-app-server.onrender.com",
+    target: process.env.SERVER_URL,
     changeOrigin: true,
     pathRewrite: {
       "^/api": "/", // Rewrite paths to remove "/api" prefix before proxying
     },
     onProxyRes: function (proxyRes, req, res) {
-      proxyRes.headers["access-control-allow-origin"] =
-        "https://breakfast-app-chi.vercel.app";
+      proxyRes.headers["access-control-allow-origin"] = process.env.CLIENT_URL;
       proxyRes.headers["access-control-allow-credentials"] = "true";
     },
   })
 );
-
-// cors development server
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173",
-//     credentials: true,
-//   })
-// );
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
