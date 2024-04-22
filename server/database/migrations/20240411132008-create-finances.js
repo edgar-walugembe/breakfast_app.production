@@ -11,21 +11,27 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       currentDebt: {
         type: Sequelize.INTEGER,
+        allowNull: true,
       },
       paidDebt: {
         type: Sequelize.INTEGER,
+        allowNull: true,
       },
       balance: {
         type: Sequelize.INTEGER,
+        allowNull: true,
       },
       status: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM("cleared", "pending", "declined"),
+        allowNull: false,
       },
       adminId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
