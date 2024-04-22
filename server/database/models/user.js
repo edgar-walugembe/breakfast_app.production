@@ -13,10 +13,10 @@ module.exports = (sequelize, DataTypes) => {
         as: "products",
       });
 
-      User.hasOne(models.Finances, {
-        foreignKey: "userId",
-        as: "finances",
-      });
+      // User.hasOne(models.Finances, {
+      //   foreignKey: "userId",
+      //   as: "finances",
+      // });
     }
   }
   User.init(
