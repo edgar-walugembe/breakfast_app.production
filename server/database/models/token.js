@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       token: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(500),
         allowNull: false,
       },
       expiresAt: {
