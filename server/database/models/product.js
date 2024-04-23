@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
-      Product.hasMany(models.User, {
+      Product.belongsTo(models.User, {
         foreignKey: "productId",
         as: "users",
       });
