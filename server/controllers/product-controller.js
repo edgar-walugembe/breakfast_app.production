@@ -81,5 +81,4 @@ module.exports = {
   deleteProduct,
   editProduct,
   fetchAllProducts,
-  uploadProductImage,
 };
