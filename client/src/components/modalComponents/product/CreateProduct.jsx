@@ -65,17 +65,24 @@ function CreateProduct({ fetchProductData }) {
     const form = pdtRef.current;
 
     if (form && form.checkValidity() === true) {
-      const formData = new FormData();
-      formData.append("name", values.name);
-      formData.append("unitPrice", values.unitPrice);
-      formData.append("img", values.img);
-      formData.append("adminId", userId);
+      // const formData = new FormData();
+      // formData.append("name", values.name);
+      // formData.append("unitPrice", values.unitPrice);
+      // formData.append("img", values.img);
+      // formData.append("adminId", userId);
+
+      const newProduct = {
+        name: form.name.value,
+        unitPrice: form.unitPrice.value,
+        img: form.img.value,
+        adminId: form.userId,
+      };
 
       console.log("Form values:", values);
-      console.log("new form values:", formData);
+      console.log("new form values:", newProduct);
 
       try {
-        const res = await axios.post(createPdtUrl_admin, formData);
+        const res = await axios.post(createPdtUrl_admin, newProduct);
 
         if (res.status === 201) {
           form.reset();
