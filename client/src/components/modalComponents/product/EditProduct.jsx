@@ -23,7 +23,7 @@ import { editPdtUrl_admin } from "../../../constants";
 import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 
-function EditProduct({ selectedPdtData, fetchData }) {
+function EditProduct({ selectedPdtData, fetchProductData }) {
   const {
     openEditPdt,
     setOpenEditPdt,
@@ -41,7 +41,7 @@ function EditProduct({ selectedPdtData, fetchData }) {
 
   EditProduct.propTypes = {
     selectedPdtData: PropTypes.object,
-    fetchData: PropTypes.func,
+    fetchProductData: PropTypes.func,
   };
 
   useEffect(() => {
@@ -89,8 +89,42 @@ function EditProduct({ selectedPdtData, fetchData }) {
     setOpenEditPdt(false);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (values, productId) => {
+    const form = pdtRef.current;
+
+    if (form && form.checkValidity() === true) {
+      const updatedProduct = { ...editPdt, ...values };
+      const res = await axios.patch(
+        `${editPdtUrl_admin}?productId=${productId}`,
+        updatedProduct
+      );
+
+      form.reset();
+      setValidated(false);
+
+      try {
+        if (res.status === 202) {
+          if (editPdt && productId) {
+            updateEditProduct(values);
+          } else {
+            setEditPdt(values);
+          }
+          setEditPdt(null);
+        } else {
+          setValidated(true);
+          console.error("Failed to edit product:", res.data.message);
+        }
+      } catch (error) {
+        console.error("Error adding product to database", error.message);
+        console.error("Error details:", error);
+        throw error;
+      }
+    } else {
+      setValidated(true);
+    }
+
     handleClose();
+    fetchProductData();
   };
 
   return (
