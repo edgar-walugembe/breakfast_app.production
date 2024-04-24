@@ -75,7 +75,7 @@ function CreateProduct({ fetchProductData }) {
         name: form.name.value,
         unitPrice: form.unitPrice.value,
         img: form.img.value,
-        adminId: form.userId,
+        adminId: userId,
       };
 
       console.log("Form values:", values);
