@@ -38,7 +38,6 @@ const FoodMenu = () => {
 
       const productsWithDataAndImages = res.data.products.map((product) => ({
         ...product,
-        // img: product.img ? `${baseUrl}/images/${product.img}` : null, // Assuming the backend serves images at /api route
       }));
       setPdtData(productsWithDataAndImages);
     } catch (error) {

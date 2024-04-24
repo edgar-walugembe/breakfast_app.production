@@ -49,10 +49,10 @@ function EditProduct({ selectedPdtData, fetchData }) {
     if (selectedPdtData) {
       setEditName(selectedPdtData.name || "");
       setEditUnitPrice(selectedPdtData.unitPrice || "");
-      setEditAdminId(selectedPdtData.adminId || "");
+      setEditAdminId(selectedPdtData.adminId || userId);
       setEditImg(selectedPdtData.img || "");
     }
-  }, [selectedPdtData]);
+  }, [selectedPdtData, userId]);
 
   const updateEditProduct = (newValues) => {
     setEditPdt((prevEditPdt) => ({ ...prevEditPdt, ...newValues }));
@@ -136,7 +136,10 @@ function EditProduct({ selectedPdtData, fetchData }) {
                       type="text"
                       fullWidth
                       value={values.name}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        handleChange(e);
+                        setEditName(e.target.value);
+                      }}
                       error={touched.name && !!errors.name}
                     />
                     <ErrorMessage
@@ -155,7 +158,10 @@ function EditProduct({ selectedPdtData, fetchData }) {
                       type="text"
                       fullWidth
                       value={values.unitPrice}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        handleChange(e);
+                        setEditUnitPrice(e.target.value);
+                      }}
                       error={touched.unitPrice && !!errors.unitPrice}
                     />
                     <ErrorMessage
@@ -176,7 +182,10 @@ function EditProduct({ selectedPdtData, fetchData }) {
                       type="text"
                       fullWidth
                       value={values.img}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        handleChange(e);
+                        setEditImg(e.target.value);
+                      }}
                       error={touched.img && !!errors.img}
                     />
                     <ErrorMessage
@@ -197,7 +206,7 @@ function EditProduct({ selectedPdtData, fetchData }) {
                   Cancel
                 </Button>
                 <Button
-                  onClick={handleSubmit}
+                  type="submit"
                   color="primary"
                   variant="contained"
                   style={{ background: "yellow", color: "black" }}
