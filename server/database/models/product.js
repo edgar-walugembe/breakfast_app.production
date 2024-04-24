@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       img: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(500),
         allowNull: false,
       },
       name: {
