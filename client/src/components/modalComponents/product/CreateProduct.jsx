@@ -179,7 +179,7 @@ function CreateProduct({ fetchProductData }) {
                       id="img"
                       name="img"
                       label=""
-                      type="file"
+                      type="text"
                       fullWidth
                       value={values.img}
                       onChange={handleChange}

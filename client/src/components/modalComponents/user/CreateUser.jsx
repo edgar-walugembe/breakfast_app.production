@@ -239,7 +239,7 @@ const CreateUser = ({ fetchData }) => {
                       margin="dense"
                       id="img"
                       name="img"
-                      type="file"
+                      type="text"
                       fullWidth
                       onChange={handleChange}
                     />

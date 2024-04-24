@@ -173,7 +173,7 @@ function EditProduct({ selectedPdtData, fetchData }) {
                       margin="dense"
                       id="img"
                       label=""
-                      type="file"
+                      type="text"
                       fullWidth
                       value={values.img}
                       onChange={handleChange}
