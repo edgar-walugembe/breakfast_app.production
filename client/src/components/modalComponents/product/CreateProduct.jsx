@@ -178,7 +178,7 @@ function CreateProduct({ fetchProductData }) {
                       margin="dense"
                       id="img"
                       name="img"
-                      label=""
+                      label="Product Image"
                       type="text"
                       fullWidth
                       value={values.img}

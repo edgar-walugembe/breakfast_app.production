@@ -238,6 +238,7 @@ const CreateUser = ({ fetchData }) => {
                       autoFocus
                       margin="dense"
                       id="img"
+                      label="User Image"
                       name="img"
                       type="text"
                       fullWidth

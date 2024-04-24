@@ -172,7 +172,7 @@ function EditProduct({ selectedPdtData, fetchData }) {
                       autoFocus
                       margin="dense"
                       id="img"
-                      label=""
+                      label="Product Image"
                       type="text"
                       fullWidth
                       value={values.img}

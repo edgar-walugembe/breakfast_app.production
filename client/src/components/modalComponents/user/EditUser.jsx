@@ -287,6 +287,7 @@ function EditUser({ selectedUserData, fetchData }) {
                       margin="dense"
                       id="img"
                       name="img"
+                      label="User Image"
                       type="text"
                       fullWidth
                       onChange={(e) => {
