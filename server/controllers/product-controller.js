@@ -3,31 +3,13 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 // create new product
-async function uploadProductImage(req, res, next) {
-  try {
-    if (!req.file) {
-      return res.status(404).json({ error: "No file provided" });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-}
-
 async function createProduct(req, res) {
   try {
-    const headers = {
-      "Content-Type": "multipart/form-data",
-    };
-
-    await uploadProductImage(req, res);
-
     const product = await Product.create({
       ...req.body,
-      img: req.file ? req.file.filename : null,
     });
 
-    return res.status(201).set(headers).send({ product });
+    return res.status(201).send({ product });
   } catch (err) {
     console.error(err);
     return res.status(500).send({ err });

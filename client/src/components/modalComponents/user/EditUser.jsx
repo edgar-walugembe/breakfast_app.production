@@ -75,7 +75,7 @@ function EditUser({ selectedUserData, fetchData }) {
     company: Yup.string().required("Company is required"),
     userType: Yup.string().required("User Type is required"),
     status: Yup.string().required("User Status is required"),
-    // img: Yup.string().required("User is required"),
+    img: Yup.string().required("User is required"),
   });
 
   const handleSubmit = async (values, userId) => {

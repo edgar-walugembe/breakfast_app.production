@@ -6,10 +6,7 @@ const {
   deleteUser,
   editUser,
   fetchAllUsers,
-  loginUser,
 } = require("../controllers/user-controller");
-
-const { hashPassword, authenticateToken } = require("../middlewares/user");
 
 /*userRole Route */
 router.get("/", function (req, res) {
@@ -27,9 +24,5 @@ router.patch("/editUser", editUser);
 
 /* fetchAllUser Route. */
 router.get("/all", fetchAllUsers);
-
-//FIXME: THIS IS COMMENTED BUT USEFUL
-// /* setPassword Route. */
-// router.post("/setPassword", hashPassword, authenticateToken, setUserPassword);
 
 module.exports = router;

@@ -21,6 +21,7 @@ import axios from "axios";
 
 import { editPdtUrl_admin } from "../../../constants";
 import PropTypes from "prop-types";
+import Cookies from "js-cookie";
 
 function EditProduct({ selectedPdtData, fetchData }) {
   const {
@@ -66,6 +67,24 @@ function EditProduct({ selectedPdtData, fetchData }) {
     adminId: Yup.number().integer().required("adminId is required"),
   });
 
+  const [userId, setUserId] = useState("");
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+      Cookies.set("token", token, { path: "/" });
+    }
+
+    // console.log(userId);
+    // console.log(token);
+  }, [token, userId]);
+
   const handleClose = () => {
     setOpenEditPdt(false);
   };
@@ -82,6 +101,7 @@ function EditProduct({ selectedPdtData, fetchData }) {
             name: selectedPdtData?.name || "",
             unitPrice: selectedPdtData?.unitPrice || "",
             img: selectedPdtData?.img || "",
+            adminId: selectedPdtData?.adminId || userId,
           }}
           validationSchema={schema}
           onSubmit={(values, { setSubmitting }) => {
@@ -107,39 +127,64 @@ function EditProduct({ selectedPdtData, fetchData }) {
               </DialogTitle>
               <DialogContent>
                 <div className="flex gap-4">
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="Product Name"
-                    type="text"
-                    fullWidth
-                    value={values.name}
-                    onChange={handleChange}
-                  />
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="unitPrice"
-                    label="Unit Price"
-                    type="text"
-                    fullWidth
-                    value={values.unitPrice}
-                    onChange={handleChange}
-                  />
+                  <FormControl autoFocus fullWidth margin="dense">
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="name"
+                      label="Product Name"
+                      type="text"
+                      fullWidth
+                      value={values.name}
+                      onChange={handleChange}
+                      error={touched.name && !!errors.name}
+                    />
+                    <ErrorMessage
+                      name="name"
+                      component="p"
+                      className="text-red-600"
+                    />
+                  </FormControl>
+
+                  <FormControl autoFocus fullWidth margin="dense">
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="unitPrice"
+                      label="Unit Price"
+                      type="text"
+                      fullWidth
+                      value={values.unitPrice}
+                      onChange={handleChange}
+                      error={touched.unitPrice && !!errors.unitPrice}
+                    />
+                    <ErrorMessage
+                      name="unitPrice"
+                      component="p"
+                      className="text-red-600"
+                    />
+                  </FormControl>
                 </div>
 
                 <div>
-                  <TextField
-                    autoFocus
-                    margin="dense"
-                    id="img"
-                    label=""
-                    type="file"
-                    fullWidth
-                    value={values.img}
-                    onChange={handleChange}
-                  />
+                  <FormControl autoFocus fullWidth margin="dense">
+                    <TextField
+                      autoFocus
+                      margin="dense"
+                      id="img"
+                      label=""
+                      type="file"
+                      fullWidth
+                      value={values.img}
+                      onChange={handleChange}
+                      error={touched.img && !!errors.img}
+                    />
+                    <ErrorMessage
+                      name="img"
+                      component="p"
+                      className="text-red-600"
+                    />
+                  </FormControl>
                 </div>
               </DialogContent>
               <DialogActions>

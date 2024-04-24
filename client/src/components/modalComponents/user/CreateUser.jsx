@@ -12,7 +12,6 @@ import {
   MenuItem,
   Select,
   Button,
-  Input,
 } from "@mui/material";
 
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -44,7 +43,7 @@ const CreateUser = ({ fetchData }) => {
     company: Yup.string().required("Company is required"),
     userType: Yup.string().required("User Type is required"),
     status: Yup.string().required("User Status is required"),
-    // img: Yup.string().required("User is required"),
+    img: Yup.string().required("User is required"),
   });
 
   const saveUser = async (values) => {

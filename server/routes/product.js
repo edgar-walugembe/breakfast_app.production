@@ -8,11 +8,11 @@ const {
   fetchAllProducts,
 } = require("../controllers/product-controller");
 
-const {
-  upload,
-  authenticateUser,
-  authorizeUser,
-} = require("../middlewares/product");
+// const {
+//   upload,
+//   authenticateUser,
+//   authorizeUser,
+// } = require("../middlewares/product");
 
 /*pdtRole Route */
 router.get("/", function (req, res) {
@@ -20,7 +20,7 @@ router.get("/", function (req, res) {
 });
 
 /* createProduct Route. */
-router.post("/createPdt", upload.single("img"), createProduct);
+router.post("/createPdt", createProduct);
 
 /* deleteProduct Route. */
 router.delete("/deletePdt", deleteProduct);
