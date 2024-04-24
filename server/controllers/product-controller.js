@@ -5,11 +5,15 @@ require("dotenv").config();
 // create new product
 async function createProduct(req, res) {
   try {
+    const headers = {
+      "Content-Type": "multipart/form-data",
+    };
+
     const product = await Product.create({
       ...req.body,
     });
 
-    return res.status(201).send({ product });
+    return res.status(201).set(headers).send({ product });
   } catch (err) {
     console.error(err);
     return res.status(500).send({ err });

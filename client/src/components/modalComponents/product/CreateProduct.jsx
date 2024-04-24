@@ -82,7 +82,12 @@ function CreateProduct({ fetchProductData }) {
       console.log("new form values:", newProduct);
 
       try {
-        const res = await axios.post(createPdtUrl_admin, newProduct);
+        const res = await axios.post(createPdtUrl_admin, newProduct, {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
         if (res.status === 201) {
           form.reset();
