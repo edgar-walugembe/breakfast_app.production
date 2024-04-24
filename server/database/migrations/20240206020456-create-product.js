@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       img: {
-        type: Sequelize.STRING(500),
+        type: Sequelize.STRING(1000),
         allowNull: true,
       },
       name: {
