@@ -164,7 +164,7 @@ function EditUser({ selectedUserData, fetchData }) {
                       label="Username"
                       type="text"
                       fullWidth
-                      value={editName}
+                      value={values.name}
                       onChange={(e) => {
                         handleChange(e);
                         setEditName(e.target.value);
@@ -188,7 +188,7 @@ function EditUser({ selectedUserData, fetchData }) {
                       label="E-mail"
                       type="email"
                       fullWidth
-                      value={editEmail}
+                      value={values.email}
                       onChange={(e) => {
                         handleChange(e);
                         setEditEmail(e.target.value);
@@ -210,7 +210,7 @@ function EditUser({ selectedUserData, fetchData }) {
                       labelId="company-label"
                       id="company"
                       name="company"
-                      value={editCompany}
+                      value={values.company}
                       label="Company"
                       onChange={(e) => {
                         handleChange(e);
@@ -234,7 +234,7 @@ function EditUser({ selectedUserData, fetchData }) {
                       labelId="type-label"
                       id="userType"
                       name="userType"
-                      value={editUserType}
+                      value={values.userType}
                       label="User Type"
                       onChange={(e) => {
                         handleChange(e);
@@ -262,7 +262,7 @@ function EditUser({ selectedUserData, fetchData }) {
                       labelId="status-label"
                       id="status"
                       name="status"
-                      value={editStatus}
+                      value={values.status}
                       label="Status"
                       onChange={(e) => {
                         handleChange(e);
@@ -287,8 +287,8 @@ function EditUser({ selectedUserData, fetchData }) {
                       margin="dense"
                       id="img"
                       name="img"
+                      value={values.img}
                       label="User Image"
-                      type="text"
                       fullWidth
                       onChange={(e) => {
                         handleChange(e);
