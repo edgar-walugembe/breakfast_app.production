@@ -49,10 +49,10 @@ function EditProduct({ selectedPdtData, fetchProductData }) {
     if (selectedPdtData) {
       setEditName(selectedPdtData.name || "");
       setEditUnitPrice(selectedPdtData.unitPrice || "");
-      setEditAdminId(selectedPdtData.adminId || userId);
+      setEditAdminId(selectedPdtData.adminId || "");
       setEditImg(selectedPdtData.img || "");
     }
-  }, [selectedPdtData, userId]);
+  }, [selectedPdtData]);
 
   const updateEditProduct = (newValues) => {
     setEditPdt((prevEditPdt) => ({ ...prevEditPdt, ...newValues }));
