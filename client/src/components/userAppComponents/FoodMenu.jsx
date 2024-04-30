@@ -9,7 +9,7 @@ import Card from "./Card";
 //context import
 import { UserOrderContext } from "../../contexts/UserOrderContext";
 import axios from "axios";
-import { getPdtUrl_admin, baseUrl } from "../../constants";
+import { baseUrl, getPdtUrl_user } from "../../constants";
 
 const FoodMenu = () => {
   //order State
@@ -34,7 +34,7 @@ const FoodMenu = () => {
 
   const fetchProductData = async () => {
     try {
-      const res = await axios.get(getPdtUrl_admin);
+      const res = await axios.get(getPdtUrl_user);
 
       const productsWithDataAndImages = res.data.products.map((product) => ({
         ...product,

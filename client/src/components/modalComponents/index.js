@@ -1,6 +1,7 @@
 import CreateProduct from "./product/CreateProduct";
 import CreateUser from "./user/CreateUser";
 import CreateFinances from "./finances/CreateFinances";
+import CreateOrder from "./order/CreateOrder";
 import DeleteProduct from "./product/DeleteProduct";
 import DeleteUser from "./user/DeleteUser";
 import DeleteFinances from "./finances/DeleteFinances";
@@ -12,6 +13,7 @@ export {
   CreateProduct,
   CreateUser,
   CreateFinances,
+  CreateOrder,
   DeleteProduct,
   DeleteUser,
   DeleteFinances,

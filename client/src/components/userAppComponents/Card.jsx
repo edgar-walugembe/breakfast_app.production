@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { FiPlusCircle } from "react-icons/fi";
 import { TbShoppingCartPlus } from "react-icons/tb";
@@ -7,9 +7,18 @@ import { TbShoppingCartPlus } from "react-icons/tb";
 //context imports
 import { UserOrderContext } from "../../contexts/UserOrderContext";
 
+//modal imports
+import { CreateOrder } from "../modalComponents";
+
 const Card = ({ name, unitPrice, img }) => {
   //order State
   const { setCount } = useContext(UserOrderContext);
+  const [openOrder, setOpenOrder] = useState(false);
+
+  //order modal
+  const handleToggle = () => {
+    setOpenOrder((prevState) => !prevState);
+  };
 
   const increaseCount = () => {
     console.log("increaseCount");
