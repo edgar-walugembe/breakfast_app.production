@@ -48,7 +48,7 @@ function EditUser({ selectedUserData, fetchData }) {
   };
 
   useEffect(() => {
-    // console.log("Selected User Data:", selectedUserData);
+    console.log("Selected User Data:", selectedUserData);
     if (selectedUserData) {
       setEditName(selectedUserData.name || "");
       setEditEmail(selectedUserData.email || "");
@@ -119,7 +119,7 @@ function EditUser({ selectedUserData, fetchData }) {
 
   return (
     <div>
-      <Dialog open={openEditUser} style={{ zIndex: 0 }}>
+      <Dialog open={openEditUser} style={{ zIndex: 9999 }}>
         <Formik
           initialValues={{
             name: selectedUserData?.name || "",
