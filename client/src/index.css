@@ -174,3 +174,10 @@ body {
 .enhanced-table ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.dropdown {
+  width: 150px;
+  border-radius: 10px;
+  top: 2.5rem;
+  left: 2.8rem;
+}

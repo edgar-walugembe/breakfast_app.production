@@ -45,6 +45,15 @@ const Card = ({ name, unitPrice, img }) => {
         >
           <TbShoppingCartPlus size={24} className=" text-white font-semibold" />
         </div>
+        {openOrder && (
+          <CreateOrder
+            name={name}
+            unitPrice={unitPrice}
+            img={img}
+            onClose={() => setOpenOrder(false)}
+            increaseCount={increaseCount}
+          />
+        )}
       </div>
     </div>
   );
