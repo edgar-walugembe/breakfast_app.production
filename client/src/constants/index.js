@@ -32,5 +32,13 @@ export const PdtUrl_user =
 export const getPdtUrl_user = `${PdtUrl_user}/all`;
 
 //order urls
-export const OrderUrl =
+/*admin*/
+export const OrderUrl_admin =
   "https://breakfast-app-server.onrender.com/Admin/Dashboard/Orders";
+export const getOrderUrl_admin = `${OrderUrl_admin}/all`;
+
+/*user*/
+export const OrderUrl_user =
+  "https://breakfast-app-server.onrender.com/User/home/Orders";
+export const getOrderUrl_user = (userId) =>
+  `${OrderUrl_user}/all?userId=${userId}`;
