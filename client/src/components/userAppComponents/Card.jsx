@@ -41,7 +41,7 @@ const Card = ({ name, unitPrice, img }) => {
         <div
           className="icon.box absolute mt-0 mr-0 flex items-center justify-center bg-amber rounded"
           style={{ width: "2.5rem", height: "2.5rem" }}
-          onClick={increaseCount}
+          onClick={handleToggle}
         >
           <TbShoppingCartPlus size={24} className=" text-white font-semibold" />
         </div>
