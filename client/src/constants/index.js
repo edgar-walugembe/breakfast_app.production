@@ -36,9 +36,15 @@ export const getPdtUrl_user = `${PdtUrl_user}/all`;
 export const OrderUrl_admin =
   "https://breakfast-app-server.onrender.com/Admin/Dashboard/Orders";
 export const getOrderUrl_admin = `${OrderUrl_admin}/all`;
+export const createOrderUrl_admin = `${OrderUrl_admin}/createOrder`;
+export const editOrderUrl_admin = `${OrderUrl_admin}/editOrder`;
+export const deleteOrderUrl_admin = `${OrderUrl_admin}/deleteOrder`;
 
 /*user*/
 export const OrderUrl_user =
   "https://breakfast-app-server.onrender.com/User/home/Orders";
 export const getOrderUrl_user = (userId) =>
   `${OrderUrl_user}/all?userId=${userId}`;
+export const createOrderUrl_user = `${OrderUrl_user}/createOrder`;
+export const editOrderUrl_user = `${OrderUrl_user}/editOrder`;
+export const deleteOrderUrl_user = `${OrderUrl_user}/deleteOrder`;
