@@ -55,7 +55,7 @@ const CreateOrder = ({ name, unitPrice, increaseCount }) => {
   };
 
   return (
-    <div className="dropdown p-2 absolute bg-cyan ">
+    <div className="dropdown p-2 absolute bg-amber">
       <div className="dropdown-content">
         <p>Name: {name}</p>
         <p>Unit Price: {unitPrice}</p>
@@ -75,7 +75,7 @@ const CreateOrder = ({ name, unitPrice, increaseCount }) => {
       <div className="flex flex-col items-center justify-center">
         <Button
           color="primary"
-          variant="contained"
+          variant="outlined"
           style={{ background: "amber", color: "black" }}
           size="sm"
           onClick={handleSubmit}
